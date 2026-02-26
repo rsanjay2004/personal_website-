@@ -192,8 +192,74 @@ export default function Home() {
         </section>
 
         {/* FOOTER */}
-          <footer className="py-6 border-t border-slate-800 text-xs text-slate-500 text-center">
-            © {new Date().getFullYear()} Rajkumar Sanjay · All Rights Reserved
+          <footer className="border-t border-slate-800 bg-black">
+            <div className="mx-auto flex max-w-5xl flex-col gap-10 px-4 py-10 md:flex-row md:items-start md:justify-between">
+              {/* Left: Name + tagline */}
+              <div>
+                <h3 className="text-2xl font-semibold text-white">
+                  Rajkumar Sanjay
+                </h3>
+                <p className="mt-2 text-sm text-slate-400">
+                  Computer Engineering Student 
+                </p>
+              </div>
+
+              {/* Middle: Quick links */}
+              <div>
+                <h4 className="text-lg font-semibold text-white">
+                  Quick Links
+                </h4>
+                <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                  <li><a href="#hero" className="hover:text-white">Home</a></li>
+                  <li><a href="#about" className="hover:text-white">About</a></li>
+                  <li><a href="#projects" className="hover:text-white">Projects</a></li>
+                  <li><a href="#skills" className="hover:text-white">Skills</a></li>
+                  <li><a href="#contact" className="hover:text-white">Contact</a></li>
+                </ul>
+              </div>
+
+              {/* Right: Social icons */}
+              <div>
+                <h4 className="text-lg font-semibold text-white">
+                  Connect
+                </h4>
+                <div className="mt-4 flex gap-4">
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/your-github"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition"
+                  >
+                    {/* Simple placeholder icon text; swap with SVG later if you want */}
+                    <span className="text-sm font-semibold">GH</span>
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/in/your-linkedin"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition"
+                  >
+                    <span className="text-sm font-semibold">in</span>
+                  </a>
+
+                  {/* Email */}
+                  <a
+                    href="mailto:youremail@example.com"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition"
+                  >
+                    <span className="text-lg">✉️</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom bar */}
+            <div className="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
+              © {new Date().getFullYear()} Rajkumar Sanjay · All Rights Reserved
+            </div>
           </footer>
       </div>
     </main>
