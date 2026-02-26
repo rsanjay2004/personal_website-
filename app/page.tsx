@@ -1,4 +1,5 @@
 // app/page.tsx
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const projects = [
   {
@@ -226,31 +227,27 @@ export default function Home() {
                 <div className="mt-4 flex gap-4">
                   {/* GitHub */}
                   <a
-                    href="https://github.com/your-github"
+                    href="https://github.com/rsanjay2004"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition"
-                  >
-                    {/* Simple placeholder icon text; swap with SVG later if you want */}
-                    <span className="text-sm font-semibold">GH</span>
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition">
+                    <Github size={18} />
                   </a>
 
                   {/* LinkedIn */}
                   <a
-                    href="https://www.linkedin.com/in/your-linkedin"
+                    href="www.linkedin.com/in/rajkumar-s-5389a123b"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition"
-                  >
-                    <span className="text-sm font-semibold">in</span>
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition">
+                    <Linkedin size={18} />
                   </a>
 
                   {/* Email */}
                   <a
-                    href="mailto:youremail@example.com"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition"
-                  >
-                    <span className="text-lg">✉️</span>
+                    href="mailto:rsanjay2004@gmail.com"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition">
+                    <Mail size={18} />
                   </a>
                 </div>
               </div>
