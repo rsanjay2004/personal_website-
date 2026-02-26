@@ -1,5 +1,5 @@
 // app/page.tsx
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin} from "lucide-react";
 
 const projects = [
   {
@@ -159,40 +159,152 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CONTACT SECTION */}
-        <section id="contact" className="py-12 border-t border-slate-800 mb-10">
-          <h2 className="text-2xl font-semibold mb-4">Contact</h2>
-          <p className="text-sm md:text-base text-slate-300 mb-4 max-w-xl">
-            Want to chat about a project, collaboration, or just say hi? Feel
-            free to reach out.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="mailto:youremail@example.com"
-              className="rounded-full bg-indigo-500 px-5 py-2 text-sm font-medium hover:bg-indigo-400 transition"
-            >
-              Email me
-            </a>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-slate-600 px-5 py-2 text-sm font-medium hover:border-indigo-400 hover:text-indigo-300 transition"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-slate-600 px-5 py-2 text-sm font-medium hover:border-indigo-400 hover:text-indigo-300 transition"
-            >
-              GitHub
-            </a>
+        {/*---------------------------------------------- CONTACT SECTION -----------------------------------------------*/}
+        <section
+          id="contact"
+          className="relative border-t border-slate-800 bg-slate-950 py-16"
+          >
+          {/* subtle dotted background */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(148,163,184,0.15),_transparent_60%)] opacity-60" />
+
+          <div className="relative mx-auto max-w-5xl px-4">
+            {/* Heading */}
+            <div className="mb-10 text-center">
+              <h2 className="text-3xl font-semibold text-white">Get In Touch</h2>
+              <p className="mt-3 text-sm md:text-base text-slate-300 max-w-2xl mx-auto">
+                Interested in working together? Feel free to contact me through these mediums...
+              </p>
+            </div>
+
+            {/* Two-column layout */}
+            <div className="grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)] items-start">
+              {/* LEFT SIDE: contact info */}
+              <div className="space-y-8">
+                <div>
+                  <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-400">
+                    Let&apos;s Connect
+                  </p>
+                </div>
+
+                {/* Location */}
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
+                    <MapPin size={18} className="text-slate-100" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-[0.14em]">
+                      Location
+                    </p>
+                    <p className="text-sm text-slate-100">Singapore</p>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border border-slate-700">
+                    <Mail size={18} className="text-slate-100" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-[0.14em]">
+                      Email
+                    </p>
+                    <a
+                      href="mailto:rsanjay2004@gmail.com"
+                      className="text-sm text-slate-100 hover:text-indigo-400"
+                    >
+                      rsanjay2004@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                {/* Social links */}
+                <div>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+                    Follow Me
+                  </p>
+                  <div className="flex gap-3">
+                    <a
+                      href="https://github.com/your-rsanjay2004"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-slate-100 border border-slate-700 hover:border-indigo-500 hover:bg-slate-800 hover:scale-110 transition"
+                    >
+                      <Github size={18} />
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-slate-100 border border-slate-700 hover:border-indigo-500 hover:bg-slate-800 hover:scale-110 transition"
+                    >
+                      <Linkedin size={18} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT SIDE: contact form (front-end only for now) */}
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 md:p-8 shadow-lg shadow-black/40">
+                <form className="space-y-4">
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div>
+                      <label className="mb-1 block text-xs font-medium text-slate-300">
+                        Rajkumar Sanjay
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                        placeholder="Rajkumar Sanjay"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-xs font-medium text-slate-300">
+                        rsanjay2004@gmail.com
+                      </label>
+                      <input
+                        type="email"
+                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                        placeholder="helloworld@gmail.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                      placeholder="Interested in working together?"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                      Your Message
+                    </label>
+                    <textarea
+                      rows={5}
+                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+                      placeholder="Tell me more in detail on how you would want to work together"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-slate-100 px-6 py-2.5 text-sm font-medium text-slate-900 hover:bg-white transition"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* FOOTER */}
+        {/*-------------------------------------------------- FOOTER -----------------------------------------------------*/}
           <footer className="border-t border-slate-800 bg-black">
             <div className="mx-auto flex max-w-5xl flex-col gap-10 px-4 py-10 md:flex-row md:items-start md:justify-between">
               {/* Left: Name + tagline */}
@@ -236,7 +348,7 @@ export default function Home() {
 
                   {/* LinkedIn */}
                   <a
-                    href="www.linkedin.com/in/rajkumar-s-5389a123b"
+                    href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                     target="_blank"
                     rel="noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700 transition">
@@ -255,7 +367,7 @@ export default function Home() {
 
             {/* Bottom bar */}
             <div className="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-              © {new Date().getFullYear()} Rajkumar Sanjay · All Rights Reserved
+              © {new Date().getFullYear()} Rajkumar Sanjay. All Rights Reserved.
             </div>
           </footer>
       </div>
