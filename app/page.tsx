@@ -1,26 +1,218 @@
 // app/page.tsx
-import { Github, Linkedin, Mail, MapPin} from "lucide-react";
+import Image from "next/image";
+import {Moon, Github, Linkedin, Mail, Download, MapPin, GraduationCap} from "lucide-react";
+
+const navItems = [
+  { label: "Home", href: "#hero" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Contact", href: "#contact" },
+];
+
+function Navbar() {
+  return (
+    <header className="sticky top-4 z-30 flex justify-center">
+      <div className="flex items-center gap-3 rounded-full border border-slate-700/80 bg-slate-950/80 px-4 py-2 shadow-lg shadow-black/40 backdrop-blur">
+        {/* nav links */}
+        <nav className="flex items-center gap-6 px-4 py-1">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-slate-200 hover:text-white transition"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* separator line */}
+        <div className="h-8 w-px bg-slate-700/70" />
+
+        {/* moon button (design only for now) */}
+        <button
+          type="button"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-100 hover:border-indigo-400 hover:bg-slate-800 hover:scale-110 transition"
+        >
+          <Moon size={18} />
+        </button>
+      </div>
+    </header>
+  );
+}
+
+const skills = [
+  { name: "C++", label: "Programming Language" },
+  { name: "JavaScript", label: "Programming Language" },
+  { name: "React", label: "JavaScript Library" },
+  { name: "Next.js", label: "React Framework" },
+  { name: "Tailwind", label: "CSS Framework" },
+  { name: "Git", label: "Version Control" },
+  { name: "Arduino", label: "Hardware Prototyping" },
+  { name: "Python", label: "Scripting & AI" },
+];
+
+function TechSection() {
+  return (
+    <section
+      id="skills"
+      className="border-t border-slate-800 bg-slate-950 py-16"
+    >
+      <div className="mx-auto max-w-5xl px-4">
+        <h2 className="text-3xl font-semibold text-white mb-2">
+          Current technologies
+        </h2>
+        <p className="text-sm md:text-base text-slate-300 mb-8 max-w-3xl">
+          I&apos;m proficient in a range of modern technologies that let me build
+          full-stack web apps, work with hardware, and experiment with AI.
+        </p>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {skills.map((skill) => (
+            <div
+              key={skill.name}
+              className="flex flex-col justify-between rounded-2xl bg-slate-900/80 border border-slate-800 px-4 py-4 shadow-md shadow-black/40 hover:border-indigo-500/80 hover:-translate-y-1 transition"
+            >
+              <div>
+                <p className="text-sm font-semibold text-white">
+                  {skill.name}
+                </p>
+                <p className="mt-1 text-xs text-slate-400">{skill.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const projects = [
   {
-    title: "Autonomous Underwater Vehicle",
-    description:
-      "Designed and implemented embedded systems for an AUV, focusing on robust sensor integration and fault-tolerant control.",
-    tags: ["Embedded", "C/C++", "Control"],
+    title: "AUV Control System",
+    subtitle: "Embedded systems for an autonomous underwater vehicle.",
+    image: "/projects/auv.jpg",
+    tags: ["Embedded C", "CAN bus", "Sensors"],
+    codeUrl: "https://github.com/your-auv-repo",
+    demoUrl: "",
+    highlight: "Competition Project",
   },
   {
-    title: "AI Notes Summariser",
-    description:
-      "Web app that uses NLP models to summarise messy lecture notes into concise points.",
+    title: "AI Study Assistant",
+    subtitle: "Web app that summarises notes and practice questions.",
+    image: "/projects/ai-study.jpg",
     tags: ["Next.js", "Python", "NLP"],
+    codeUrl: "https://github.com/your-ai-repo",
+    demoUrl: "https://your-ai-demo.vercel.app",
+    highlight: "Personal Project",
   },
   {
-    title: "STEM Teaching Toolkit",
-    description:
-      "Interactive modules to teach robotics and coding concepts to beginners.",
-    tags: ["React", "Education", "UI/UX"],
+    title: "mBot Maze Solver",
+    subtitle: "Autonomous robot that navigates mazes using sensors.",
+    image: "/projects/mbot.jpg",
+    tags: ["C++", "Arduino", "Robotics"],
+    codeUrl: "https://github.com/your-mbot-repo",
+    demoUrl: "",
+    highlight: "Robotics",
   },
 ];
+
+function ProjectsSection() {
+  return (
+    <section
+      id="projects"
+      className="border-t border-slate-800 bg-slate-950 py-16"
+    >
+      <div className="mx-auto max-w-5xl px-4">
+        <h2 className="text-3xl font-semibold text-white text-center mb-2">
+          Featured Projects
+        </h2>
+        <p className="text-sm md:text-base text-slate-300 text-center mb-10 max-w-2xl mx-auto">
+          Here are some of my projects that showcase how I combine software,
+          hardware, and AI to solve problems.
+        </p>
+
+        {/* horizontal scroll on small screens, centered on large */}
+        <div className="flex gap-6 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
+          {projects.map((p) => (
+            <article
+              key={p.title}
+              className="min-w-[260px] md:min-w-0 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-lg shadow-black/40 flex flex-col overflow-hidden hover:border-indigo-500/80 hover:-translate-y-1 transition"
+            >
+              {/* top image */}
+              {p.image && (
+                <div className="relative h-40 w-full">
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+
+              {/* main content */}
+              <div className="flex flex-1 flex-col justify-between px-4 py-4">
+                <div>
+                  {p.highlight && (
+                    <span className="inline-block rounded-full bg-amber-500/90 px-3 py-0.5 text-[11px] font-semibold text-black mb-2">
+                      {p.highlight}
+                    </span>
+                  )}
+                  <h3 className="text-lg font-semibold text-white mb-1">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-slate-300 mb-3">
+                    {p.subtitle}
+                  </p>
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full bg-slate-800 px-3 py-1 text-[11px] text-slate-200"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* buttons */}
+                <div className="flex flex-wrap gap-3">
+                  {p.codeUrl && (
+                    <a
+                      href={p.codeUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex flex-1 items-center justify-center rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-100 hover:border-indigo-400 hover:bg-slate-800 transition"
+                    >
+                      Code
+                    </a>
+                  )}
+                  {p.demoUrl && (
+                    <a
+                      href={p.demoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex flex-1 items-center justify-center rounded-full bg-white px-3 py-1.5 text-xs font-medium text-slate-900 hover:bg-slate-100 transition"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p className="mt-6 text-center text-xs text-slate-500">
+          Scroll sideways on mobile to see more →
+        </p>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
@@ -28,137 +220,98 @@ export default function Home() {
       {/* Outer container */}
       <div className="mx-auto max-w-5xl px-4">
         {/* NAVBAR */}
-        <nav className="sticky top-0 z-20 bg-slate-950/80 backdrop-blur flex items-center justify-between py-4 border-b border-slate-800">
-          <span className="text-lg font-semibold tracking-tight">
-            yourname<span className="text-indigo-400">.dev</span>
-          </span>
-          <div className="flex gap-4 text-sm">
-            <a href="#about" className="hover:text-indigo-300 transition">
-              About
-            </a>
-            <a href="#projects" className="hover:text-indigo-300 transition">
-              Projects
-            </a>
-            <a href="#contact" className="hover:text-indigo-300 transition">
-              Contact
-            </a>
-          </div>
-        </nav>
+         <Navbar />
 
         {/* HERO */}
         <section
           id="hero"
-          className="flex flex-col md:flex-row items-center gap-10 py-16 md:py-24"
+          className="relative overflow-hidden bg-slate-950 py-16 md:py-24"
         >
-          {/* Left side: text */}
-          <div className="flex-1">
-            <p className="text-sm uppercase tracking-[0.2em] text-indigo-300 mb-3">
-              Hello, I&apos;m
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Your Name Here
-            </h1>
-            <h2 className="text-xl md:text-2xl text-slate-300 mb-6">
-              Aspiring developer & hardware tinkerer
-            </h2>
-            <p className="text-sm md:text-base text-slate-400 mb-6 max-w-xl">
-              I&apos;m a student who enjoys building things that mix{" "}
-              <span className="text-indigo-300">software</span> and{" "}
-              <span className="text-indigo-300">hardware</span> — from robots
-              that move on their own to web apps powered by AI.
-            </p>
+          {/* dotted background */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(148,163,184,0.18),_transparent_60%)] opacity-70" />
 
-            <div className="flex gap-4">
-              <a
-                href="#projects"
-                className="rounded-full bg-indigo-500 px-5 py-2 text-sm font-medium hover:bg-indigo-400 transition"
-              >
-                View my projects
-              </a>
-              <a
-                href="#contact"
-                className="rounded-full border border-slate-600 px-5 py-2 text-sm font-medium hover:border-indigo-400 hover:text-indigo-300 transition"
-              >
-                Contact me
-              </a>
+          <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-12 px-4 md:flex-row md:items-center md:justify-between">
+            {/* LEFT */}
+            <div className="max-w-xl">
+              <p className="text-sm uppercase tracking-[0.22em] text-slate-400 mb-2">
+                Portfolio
+              </p>
+
+              <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-3">
+                Hi, I&apos;m <span className="text-white">Rajkumar Sanjay</span> 👋
+              </h1>
+
+              <span className="inline-flex items-center rounded-full bg-indigo-500/90 px-4 py-1.5 text-sm font-medium text-white shadow-lg shadow-indigo-500/40 mb-4">
+                Aspiring Software Developer 
+              </span>
+
+              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-300 mb-5">
+                <span className="inline-flex items-center gap-2">
+                  <MapPin size={16} /> Singapore
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <GraduationCap size={16} /> Y1 Computer Engineer @ NUS
+                </span>
+              </div>
+
+              <p className="text-sm md:text-base text-slate-300 mb-6">
+                Passionate about building things that combine{" "}
+                <span className="text-indigo-300">software development</span>,{" "}
+                <span className="text-indigo-300">embedded systems</span>, and{" "}
+                <span className="text-indigo-300">and AI</span>. Generally i enjoy turning ideas into a reality using my experiences. 
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="#projects"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-100 transition"
+                >
+                  Explore My Work ↓
+                </a>
+                <a
+                  href="/Users/livelysan/Downloads/Sanjay_Resume"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900 px-5 py-2.5 text-sm font-medium text-slate-100 hover:border-indigo-400 hover:bg-slate-800 transition gap-2"
+                >
+                  <Download size={16} />
+                  Download CV
+                </a>
+                <a
+                  href="https://github.com/your-rsanjay2004"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-slate-100 border border-slate-700 hover:border-indigo-500 hover:bg-slate-800 hover:scale-110 transition"
+                >
+                  <Github size={18} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-slate-100 border border-slate-700 hover:border-indigo-500 hover:bg-slate-800 hover:scale-110 transition"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Right side: fake profile card */}
-          <div className="flex-1 flex justify-center">
-            <div className="w-full max-w-xs rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-indigo-500/10">
-              <div className="h-20 w-20 rounded-full bg-gradient-to-tr from-indigo-400 to-violet-500 mb-4" />
-              <p className="text-lg font-semibold mb-1">Your Name</p>
-              <p className="text-sm text-slate-400 mb-4">
-                Computer Engineering student · NUS
-              </p>
-              <p className="text-sm text-slate-300 mb-4">
-                Interested in embedded systems, AI, and teaching others how to
-                build cool things.
-              </p>
-              <div className="flex flex-wrap gap-2 text-xs">
-                <span className="rounded-full bg-slate-800 px-3 py-1">
-                  Next.js
-                </span>
-                <span className="rounded-full bg-slate-800 px-3 py-1">
-                  Tailwind
-                </span>
-                <span className="rounded-full bg-slate-800 px-3 py-1">
-                  Embedded C
-                </span>
+            {/* RIGHT: circular photo */}
+            <div className="flex justify-center md:justify-end w-full md:w-auto">
+              <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full border border-slate-700 bg-slate-900 shadow-[0_0_60px_rgba(79,70,229,0.5)] overflow-hidden">
+                <Image
+                  src="/Users/livelysan/Downloads/me.jpg"
+                  alt="Photo of Rajkumar Sanjay"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* ABOUT SECTION */}
-        <section id="about" className="py-12 border-t border-slate-800">
-          <h2 className="text-2xl font-semibold mb-4">About</h2>
-          <p className="text-sm md:text-base text-slate-300 mb-4">
-            I&apos;m currently a student exploring{" "}
-            <span className="text-indigo-300">web development</span>,{" "}
-            <span className="text-indigo-300">AI</span>, and{" "}
-            <span className="text-indigo-300">embedded systems</span>. I enjoy
-            working on hands-on projects, participating in competitions, and
-            explaining tech concepts to beginners.
-          </p>
-          <p className="text-sm md:text-base text-slate-400">
-            Right now I&apos;m focused on learning the modern web stack:
-            React, Next.js, and Tailwind CSS — and building real projects to
-            apply what I learn.
-          </p>
-        </section>
 
-        {/* PROJECTS SECTION */}
-        <section id="projects" className="py-12 border-t border-slate-800">
-          <h2 className="text-2xl font-semibold mb-6">Projects</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-indigo-400 hover:-translate-y-1 transition"
-              >
-                <h3 className="text-lg font-semibold mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-slate-300 mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-slate-800 px-3 py-1 text-slate-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
+        {/*--------------------------------------------------ABOUT & PROJECTS SECTION -------------------------------------------------*/}
+            <ProjectsSection />
+            <TechSection />
         {/*---------------------------------------------- CONTACT SECTION -----------------------------------------------*/}
         <section
           id="contact"
@@ -305,7 +458,7 @@ export default function Home() {
         </section>
 
         {/*-------------------------------------------------- FOOTER -----------------------------------------------------*/}
-          <footer className="border-t border-slate-800 bg-black">
+          <footer className="border-t border-slate-800 bg-slate-950">
             <div className="mx-auto flex max-w-5xl flex-col gap-10 px-4 py-10 md:flex-row md:items-start md:justify-between">
               {/* Left: Name + tagline */}
               <div>
