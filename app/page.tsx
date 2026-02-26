@@ -212,8 +212,8 @@ export default function Home() {
                 </h4>
                 <ul className="mt-3 space-y-2 text-sm text-slate-300">
                   <li><a href="#hero" className="hover:text-white">Home</a></li>
-                  <li><a href="#about" className="hover:text-white">About</a></li>
-                  <li><a href="#projects" className="hover:text-white">Projects</a></li>
+                  <li><a href="#about" className="hover:text-white"> About Myself </a></li>
+                  <li><a href="#projects" className="hover:text-white">Current/Past Projects</a></li>
                   <li><a href="#skills" className="hover:text-white">Skills</a></li>
                   <li><a href="#contact" className="hover:text-white">Contact</a></li>
                 </ul>
