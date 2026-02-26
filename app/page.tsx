@@ -192,10 +192,9 @@ export default function Home() {
         </section>
 
         {/* FOOTER */}
-        <footer className="py-6 border-t border-slate-800 text-xs text-slate-500 flex justify-between">
-          <span>© {new Date().getFullYear()} Your Name</span>
-          <span>Built with Next.js & Tailwind</span>
-        </footer>
+          <footer className="py-6 border-t border-slate-800 text-xs text-slate-500 text-center">
+            © {new Date().getFullYear()} Rajkumar Sanjay · All Rights Reserved
+          </footer>
       </div>
     </main>
   );
