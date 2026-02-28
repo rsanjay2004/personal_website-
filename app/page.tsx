@@ -1,10 +1,9 @@
 // app/page.tsx
 "use client";
 
-import "./globals.css";
-
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import type { FormEvent } from "react";
 import {
   Moon,
   Sun,
@@ -21,6 +20,8 @@ import {
   Terminal,
 } from "lucide-react";
 
+// ---------------- NAV ITEMS ----------------
+
 const navItems = [
   { label: "Home", href: "#hero" },
   { label: "About", href: "#about" },
@@ -29,9 +30,11 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
+// ---------------- NAVBAR ----------------
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(true); // currently only toggles icon
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -41,7 +44,7 @@ function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
         scrolled ? "py-2" : "py-4"
       }`}
     >
@@ -58,7 +61,7 @@ function Navbar() {
             <span className="text-lg font-bold text-white">RS</span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -83,6 +86,8 @@ function Navbar() {
   );
 }
 
+// ---------------- HERO SECTION ----------------
+
 function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -97,9 +102,9 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden pt-24"
+      className="relative flex min-h-screen items-center overflow-hidden pt-24"
     >
-      {/* Animated gradient background */}
+      {/* animated radial gradient following cursor */}
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
@@ -107,8 +112,8 @@ function Hero() {
         }}
       />
 
-      <div className="mx-auto max-w-6xl px-4 w-full">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+      <div className="mx-auto w-full max-w-6xl px-4">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left content */}
           <div className="space-y-6 animate-fade-in">
             <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2">
@@ -118,7 +123,7 @@ function Hero() {
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+            <h1 className="text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
               Building the{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
                 Future
@@ -126,7 +131,7 @@ function Hero() {
               with Code
             </h1>
 
-            <p className="text-lg text-slate-300 max-w-xl">
+            <p className="max-w-xl text-lg text-slate-300">
               Hey there! I&apos;m{" "}
               <span className="font-semibold text-white">
                 Rajkumar Sanjay
@@ -154,7 +159,7 @@ function Hero() {
               >
                 <span className="relative z-10">View My Work</span>
                 <ChevronDown
-                  className="relative z-10 inline-block ml-1 animate-bounce"
+                  className="relative z-10 ml-1 inline-block animate-bounce"
                   size={16}
                 />
               </a>
@@ -172,7 +177,7 @@ function Hero() {
                 href="https://github.com/rsanjay2004"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:bg-indigo-500/20 hover:text-indigo-400 hover:scale-110"
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-400"
               >
                 <Github size={20} />
               </a>
@@ -180,34 +185,25 @@ function Hero() {
                 href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:bg-indigo-500/20 hover:text-indigo-400 hover:scale-110"
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-400"
               >
                 <Linkedin size={20} />
               </a>
               <a
                 href="mailto:rsanjay2004@gmail.com"
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:bg-indigo-500/20 hover:text-indigo-400 hover:scale-110"
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-400"
               >
                 <Mail size={20} />
               </a>
             </div>
           </div>
 
-          {/* Right - Profile Image with decorative elements */}
+          {/* Right - photo + stat bubbles */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative">
-              {/* Glowing ring effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-20 blur-3xl animate-pulse" />
+              <div className="animate-pulse absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-20 blur-3xl" />
 
-              {/* Main image container */}
-              <div className="relative h-80 w-80 lg:h-96 lg:w-96 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-2 shadow-2xl">
-                {/* 
-                  IMAGE SETUP:
-                  1. Create a folder: public/images/
-                  2. Place your photo there as: public/images/profile.jpg
-                  3. The image should be a square (1:1 ratio) for best results
-                  4. Recommended size: 800x800px or higher
-                */}
+              <div className="relative h-80 w-80 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-2 shadow-2xl lg:h-96 lg:w-96">
                 <div className="relative h-full w-full overflow-hidden rounded-full">
                   <Image
                     src="/images/profile.jpg"
@@ -219,13 +215,12 @@ function Hero() {
                 </div>
               </div>
 
-              {/* Floating badges */}
-              <div className="absolute -right-4 top-16 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm animate-float">
+              <div className="animate-float absolute -right-4 top-16 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
                 <p className="text-xs text-slate-400">Lines of Code</p>
                 <p className="text-2xl font-bold text-white">10K+</p>
               </div>
 
-              <div className="absolute -left-4 bottom-20 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm animate-float-delayed">
+              <div className="animate-float-delayed absolute -left-4 bottom-20 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
                 <p className="text-xs text-slate-400">Projects Built</p>
                 <p className="text-2xl font-bold text-white">15+</p>
               </div>
@@ -242,6 +237,8 @@ function Hero() {
   );
 }
 
+// ---------------- ABOUT SECTION ----------------
+
 function AboutSection() {
   return (
     <section
@@ -249,7 +246,7 @@ function AboutSection() {
       className="relative border-t border-slate-800/50 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
-        <div className="grid gap-12 lg:grid-cols-2 items-center">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="space-y-6">
             <div className="inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm text-purple-300">
               About Me
@@ -264,9 +261,9 @@ function AboutSection() {
 
             <div className="space-y-4 text-slate-300">
               <p>
-                I&apos;m currently pursuing Computer Engineering at the
-                National University of Singapore, where I&apos;m constantly
-                exploring the intersection of software and hardware.
+                I&apos;m currently pursuing Computer Engineering at the National
+                University of Singapore, where I&apos;m constantly exploring the
+                intersection of software and hardware.
               </p>
 
               <p>
@@ -292,15 +289,8 @@ function AboutSection() {
             </a>
           </div>
 
+          {/* image collage */}
           <div className="grid grid-cols-2 gap-4">
-            {/* 
-              SETUP FOR THESE IMAGES:
-              Create these files in public/images/:
-              - workspace.jpg (your desk/workspace)
-              - robot.jpg (robotics project)
-              - code-screen.jpg (coding setup)
-              - team.jpg (you with teammates or at an event)
-            */}
             <div className="space-y-4">
               <div className="group relative h-48 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
@@ -344,6 +334,8 @@ function AboutSection() {
     </section>
   );
 }
+
+// ---------------- SKILLS SECTION ----------------
 
 const skills = [
   {
@@ -413,16 +405,16 @@ function SkillsSection() {
       className="relative border-t border-slate-800/50 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
-        <div className="text-center mb-16">
-          <div className="inline-block rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-300 mb-4">
+        <div className="mb-16 text-center">
+          <div className="mb-4 inline-block rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-300">
             Technical Arsenal
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Skills & Technologies
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-slate-400">
             A comprehensive toolkit built through hands-on projects and
-            continuous learning
+            continuous learning.
           </p>
         </div>
 
@@ -447,9 +439,7 @@ function SkillsSection() {
 
               <div className="mb-2 h-2 w-full overflow-hidden rounded-full bg-slate-800">
                 <div
-                  className={`h-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ${
-                    hoveredSkill === skill.name ? "w-full" : "w-0"
-                  }`}
+                  className={`h-full bg-gradient-to-r ${skill.color} transition-all duration-700`}
                   style={{
                     width:
                       hoveredSkill === skill.name ? `${skill.level}%` : "0%",
@@ -462,7 +452,7 @@ function SkillsSection() {
               </p>
 
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 transition group-hover:opacity-5`}
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 transition group-hover:opacity-5`}
               />
             </div>
           ))}
@@ -471,6 +461,8 @@ function SkillsSection() {
     </section>
   );
 }
+
+// ---------------- PROJECTS SECTION ----------------
 
 const projects = [
   {
@@ -521,6 +513,7 @@ const projects = [
 
 function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
+
   const categories = [
     "All",
     ...Array.from(new Set(projects.map((p) => p.category))),
@@ -537,21 +530,21 @@ function ProjectsSection() {
       className="relative border-t border-slate-800/50 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
-        <div className="text-center mb-12">
-          <div className="inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300 mb-4">
+        <div className="mb-12 text-center">
+          <div className="mb-4 inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300">
             Portfolio
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Featured Projects
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-slate-400">
             A selection of projects showcasing my skills across different
-            domains
+            domains.
           </p>
         </div>
 
         {/* Category filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="mb-12 flex flex-wrap justify-center gap-3">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -579,16 +572,6 @@ function ProjectsSection() {
             >
               {/* Project image */}
               <div className="relative h-64 overflow-hidden">
-                {/* 
-                  PROJECT IMAGE SETUP:
-                  Create folder: public/images/projects/
-                  Add these images:
-                  - auv.jpg
-                  - ai-study.jpg
-                  - mbot.jpg
-                  - weather.jpg
-                  Recommended size: 1200x800px
-                */}
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -598,14 +581,14 @@ function ProjectsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
 
                 {project.featured && (
-                  <div className="absolute top-4 right-4 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-semibold text-yellow-300 backdrop-blur-sm">
+                  <div className="absolute right-4 top-4 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-semibold text-yellow-300 backdrop-blur-sm">
                     ⭐ Featured
                   </div>
                 )}
               </div>
 
               {/* Content */}
-              <div className="p-6 space-y-4">
+              <div className="space-y-4 p-6">
                 <div>
                   <div className="mb-2 flex items-center justify-between">
                     <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-400">
@@ -613,7 +596,7 @@ function ProjectsSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-indigo-400 transition">
+                  <h3 className="mb-2 text-2xl font-bold text-white transition group-hover:text-indigo-400">
                     {project.title}
                   </h3>
 
@@ -668,6 +651,8 @@ function ProjectsSection() {
   );
 }
 
+// ---------------- CONTACT SECTION ----------------
+
 function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
@@ -676,9 +661,9 @@ function ContactSection() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add your form submission logic here
+    // Replace this with your actual submission logic (email service, API, etc.)
     console.log("Form submitted:", formData);
   };
 
@@ -688,17 +673,17 @@ function ContactSection() {
       className="relative border-t border-slate-800/50 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
-        <div className="text-center mb-16">
-          <div className="inline-block rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-300 mb-4">
+        <div className="mb-16 text-center">
+          <div className="mb-4 inline-block rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-300">
             Get In Touch
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Let&apos;s Build Something{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
               Amazing
             </span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-slate-400">
             Have a project in mind or just want to chat? I&apos;m always open
             to new opportunities and collaborations.
           </p>
@@ -711,10 +696,10 @@ function ContactSection() {
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500">
                 <Mail className="text-white" size={24} />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
+              <h3 className="mb-2 text-lg font-semibold text-white">Email</h3>
               <a
                 href="mailto:rsanjay2004@gmail.com"
-                className="text-slate-400 hover:text-indigo-400 transition"
+                className="text-slate-400 transition hover:text-indigo-400"
               >
                 rsanjay2004@gmail.com
               </a>
@@ -724,14 +709,14 @@ function ContactSection() {
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500">
                 <Linkedin className="text-white" size={24} />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="mb-2 text-lg font-semibold text-white">
                 LinkedIn
               </h3>
               <a
                 href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-indigo-400 transition"
+                className="text-slate-400 transition hover:text-indigo-400"
               >
                 Connect with me
               </a>
@@ -741,12 +726,12 @@ function ContactSection() {
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-slate-700 to-slate-800">
                 <Github className="text-white" size={24} />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">GitHub</h3>
+              <h3 className="mb-2 text-lg font-semibold text-white">GitHub</h3>
               <a
                 href="https://github.com/rsanjay2004"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-indigo-400 transition"
+                className="text-slate-400 transition hover:text-indigo-400"
               >
                 Check out my code
               </a>
@@ -820,7 +805,7 @@ function ContactSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 resize-none"
+                  className="w-full resize-none rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -839,6 +824,8 @@ function ContactSection() {
   );
 }
 
+// ---------------- FOOTER ----------------
+
 function Footer() {
   return (
     <footer className="border-t border-slate-800/50 bg-slate-950">
@@ -852,7 +839,7 @@ function Footer() {
                 Rajkumar Sanjay
               </span>
             </div>
-            <p className="text-sm text-slate-400 mb-6">
+            <p className="mb-6 text-sm text-slate-400">
               Computer Engineering Student passionate about building innovative
               solutions through code.
             </p>
@@ -915,7 +902,7 @@ function Footer() {
                 <Mail size={16} className="text-indigo-400" />
                 <a
                   href="mailto:rsanjay2004@gmail.com"
-                  className="hover:text-indigo-400 transition"
+                  className="transition hover:text-indigo-400"
                 >
                   rsanjay2004@gmail.com
                 </a>
@@ -938,6 +925,8 @@ function Footer() {
     </footer>
   );
 }
+
+// ---------------- PAGE ----------------
 
 export default function Home() {
   return (
