@@ -396,8 +396,8 @@ const skills = [
     name: "Python",
     level: 85,
     category: "Languages",
-    icon: "public/Resources/python.png",
-    color: "from-green-500 to-emerald-500",
+    icon: "python.svg",
+    //color: "from-green-500 to-emerald-500",
   },
   {
     name: "React & Next.js",
@@ -467,7 +467,13 @@ function SkillsSection() {
               className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 transition hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10"
             >
               <div className="mb-4 flex items-start justify-between">
-                <span className="text-4xl">{skill.icon}</span>
+                <Image
+                  src={`/icons/${skill.icon}`}
+                  alt={skill.name}
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
                 <span className="rounded-full bg-slate-800 px-2 py-1 text-xs text-slate-400">
                   {skill.category}
                 </span>
