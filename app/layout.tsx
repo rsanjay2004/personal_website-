@@ -1,6 +1,5 @@
-// app/layout.tsx
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.css";   // ✅ THIS LINE IS CRITICAL
 
 export const metadata: Metadata = {
   title: "Rajkumar Sanjay | Portfolio",
