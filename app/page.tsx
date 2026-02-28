@@ -96,7 +96,7 @@ function Navbar() {
               size={24}
             />
             <span className="text-lg font-bold text-slate-900 dark:text-white">
-              RS
+              SANJAY
             </span>
           </div>
 
@@ -247,7 +247,7 @@ function Hero() {
               <div className="relative h-80 w-80 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-2 shadow-2xl lg:h-96 lg:w-96">
                 <div className="relative h-full w-full overflow-hidden rounded-full">
                   <Image
-                    src="public/me.jpg"
+                    src="/Users/livelysan/my-portfolio/public/me.jpg"
                     alt="Rajkumar Sanjay"
                     fill
                     className="object-cover"
@@ -304,24 +304,23 @@ function AboutSection() {
               <p>
                 I&apos;m currently pursuing Computer Engineering at the National
                 University of Singapore, where I&apos;m constantly exploring the
-                intersection of software and hardware.
+                my interests in software and hardware.
               </p>
 
               <p>
                 My journey in tech started with robotics competitions, and has
-                evolved into a passion for building full-stack applications,
+                evolved into a passion for building web development,
                 embedded systems, and experimenting with AI/ML technologies.
               </p>
 
               <p>
                 When I&apos;m not coding, you&apos;ll find me tinkering with
-                Arduino projects, contributing to open-source, or learning the
-                latest in web development.
+                Arduino projects or learning the latest in web development.
               </p>
             </div>
 
             <a
-              href="/resume.pdf"
+              href="/Users/livelysan/my-portfolio/public/Sanjay’s Resume.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full border-2 border-purple-500 bg-purple-500/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-purple-500/20"
             >
@@ -381,56 +380,56 @@ function AboutSection() {
 const skills = [
   {
     name: "C++",
-    level: 85,
+    level: 75,
     category: "Languages",
     icon: "💻",
     color: "from-blue-500 to-cyan-500",
   },
   {
     name: "JavaScript/TypeScript",
-    level: 90,
+    level: 75,
     category: "Languages",
     icon: "⚡",
     color: "from-yellow-500 to-orange-500",
   },
   {
     name: "Python",
-    level: 80,
+    level: 85,
     category: "Languages",
     icon: "🐍",
     color: "from-green-500 to-emerald-500",
   },
   {
     name: "React & Next.js",
-    level: 88,
+    level: 75,
     category: "Frameworks",
     icon: "⚛️",
     color: "from-cyan-500 to-blue-500",
   },
   {
     name: "Tailwind CSS",
-    level: 92,
+    level: 80,
     category: "Frameworks",
     icon: "🎨",
     color: "from-teal-500 to-cyan-500",
   },
   {
     name: "Git & GitHub",
-    level: 85,
+    level: 75,
     category: "Tools",
     icon: "🔧",
     color: "from-orange-500 to-red-500",
   },
   {
     name: "Arduino & Embedded",
-    level: 75,
+    level: 90,
     category: "Hardware",
     icon: "🤖",
     color: "from-purple-500 to-pink-500",
   },
   {
     name: "Machine Learning",
-    level: 70,
+    level: 80,
     category: "AI/ML",
     icon: "🧠",
     color: "from-indigo-500 to-purple-500",
@@ -448,7 +447,7 @@ function SkillsSection() {
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-16 text-center">
           <div className="mb-4 inline-block rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-300">
-            Technical Arsenal
+            Technical Skills
           </div>
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Skills & Technologies
@@ -517,17 +516,17 @@ const projects = [
     category: "Embedded Systems",
     featured: true,
   },
-  {
-    title: "AI Study Companion",
-    description:
-      "Full-stack web application using NLP to generate summaries and practice questions from study notes, with spaced repetition algorithm.",
-    image: "/images/projects/ai-study.jpg",
-    tags: ["Next.js", "Python", "OpenAI", "PostgreSQL"],
-    github: "https://github.com/rsanjay2004/ai-study",
-    demo: "https://ai-study-demo.vercel.app",
-    category: "AI/ML",
-    featured: true,
-  },
+  // {
+    // title: "AI Study Companion",
+    // description:
+    //   "Full-stack web application using NLP to generate summaries and practice questions from study notes, with spaced repetition algorithm.",
+    // image: "/images/projects/ai-study.jpg",
+    // tags: ["Next.js", "Python", "OpenAI", "PostgreSQL"],
+    // github: "https://github.com/rsanjay2004/ai-study",
+    // demo: "https://ai-study-demo.vercel.app",
+    // category: "AI/ML",
+    // featured: true,
+  // },
   {
     title: "mBot Maze Navigator",
     description:
@@ -539,17 +538,17 @@ const projects = [
     category: "Robotics",
     featured: true,
   },
-  {
-    title: "Real-Time Weather Dashboard",
-    description:
-      "Interactive weather visualization dashboard with real-time data from multiple APIs and predictive analytics.",
-    image: "/images/projects/weather.jpg",
-    tags: ["React", "D3.js", "Weather API", "Tailwind"],
-    github: "https://github.com/rsanjay2004/weather-dash",
-    demo: "https://weather-dash-demo.vercel.app",
-    category: "Web Development",
-    featured: false,
-  },
+  // {
+  //   // title: "Real-Time Weather Dashboard",
+  //   // description:
+  //   //   "Interactive weather visualization dashboard with real-time data from multiple APIs and predictive analytics.",
+  //   // image: "/images/projects/weather.jpg",
+  //   // tags: ["React", "D3.js", "Weather API", "Tailwind"],
+  //   // github: "https://github.com/rsanjay2004/weather-dash",
+  //   // demo: "https://weather-dash-demo.vercel.app",
+  //   // category: "Web Development",
+  //   // featured: false,
+  // },
 ];
 
 function ProjectsSection() {
