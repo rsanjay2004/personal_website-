@@ -1,6 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import "./globals.css";  // ✅ THIS IS IMPORTANT
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Rajkumar Sanjay | Portfolio",
@@ -14,10 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-950 text-slate-100">
+      <body className="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
         {children}
       </body>
-      <body className="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300"></body>
     </html>
   );
 }
