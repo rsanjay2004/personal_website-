@@ -17,6 +17,8 @@ export default function RootLayout({
       <body className="bg-slate-950 text-slate-100">
         {children}
       </body>
+      <body className="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300"></body>
     </html>
   );
 }
+

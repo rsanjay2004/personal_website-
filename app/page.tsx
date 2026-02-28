@@ -34,13 +34,48 @@ const navItems = [
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(true); // currently only toggles icon
+  const [darkMode, setDarkMode] = useState<boolean | null>(null);
 
+  // 1) Decide initial theme (localStorage or system preference)
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+
+    if (storedTheme === "dark") {
+      setDarkMode(true);
+    } else if (storedTheme === "light") {
+      setDarkMode(false);
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setDarkMode(prefersDark);
+    }
+  }, []);
+
+  // 2) Apply theme to <html> and persist
+  useEffect(() => {
+    if (darkMode === null) return;
+
+    const root = window.document.documentElement;
+
+    if (darkMode) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  // 3) Shrink navbar on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Avoid flicker while darkMode is still null
+  if (darkMode === null) return null;
 
   return (
     <header
@@ -50,33 +85,39 @@ function Navbar() {
     >
       <div className="mx-auto max-w-6xl px-4">
         <div
-          className={`flex items-center justify-between rounded-2xl border backdrop-blur-xl transition-all duration-300 ${
-            scrolled
-              ? "border-slate-700/50 bg-slate-950/95 px-6 py-3 shadow-2xl"
-              : "border-slate-700/30 bg-slate-950/70 px-8 py-4"
-          }`}
+          className={`flex items-center justify-between rounded-2xl border px-6 py-3 backdrop-blur-xl transition-all duration-300
+            bg-white/70 border-slate-300/40 shadow-lg
+            dark:bg-slate-950/80 dark:border-slate-700/40`}
         >
+          {/* Logo */}
           <div className="flex items-center gap-2">
-            <Terminal className="text-indigo-400" size={24} />
-            <span className="text-lg font-bold text-white">RS</span>
+            <Terminal
+              className="text-indigo-500 dark:text-indigo-400"
+              size={24}
+            />
+            <span className="text-lg font-bold text-slate-900 dark:text-white">
+              RS
+            </span>
           </div>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          {/* Nav links */}
+          <nav className="hidden items-center gap-4 md:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="group relative px-4 py-2 text-sm font-medium text-slate-300 transition hover:text-white"
+                className="group relative px-3 py-1 text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 bg-indigo-400 transition-all group-hover:w-full" />
+                <span className="absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 bg-indigo-500 transition-all group-hover:w-full" />
               </a>
             ))}
           </nav>
 
+          {/* Dark Mode Toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 transition hover:bg-indigo-500/20 hover:text-indigo-400"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-700 transition hover:bg-indigo-500/20 hover:text-indigo-500 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-indigo-400"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -206,7 +247,7 @@ function Hero() {
               <div className="relative h-80 w-80 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-2 shadow-2xl lg:h-96 lg:w-96">
                 <div className="relative h-full w-full overflow-hidden rounded-full">
                   <Image
-                    src="/images/profile.jpg"
+                    src="public/me.jpg"
                     alt="Rajkumar Sanjay"
                     fill
                     className="object-cover"
@@ -217,12 +258,12 @@ function Hero() {
 
               <div className="animate-float absolute -right-4 top-16 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
                 <p className="text-xs text-slate-400">Lines of Code</p>
-                <p className="text-2xl font-bold text-white">10K+</p>
+                <p className="text-2xl font-bold text-white">2K+</p>
               </div>
 
               <div className="animate-float-delayed absolute -left-4 bottom-20 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
                 <p className="text-xs text-slate-400">Projects Built</p>
-                <p className="text-2xl font-bold text-white">15+</p>
+                <p className="text-2xl font-bold text-white">7+</p>
               </div>
             </div>
           </div>
