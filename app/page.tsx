@@ -247,7 +247,7 @@ function Hero() {
               <div className="relative h-80 w-80 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-2 shadow-2xl lg:h-96 lg:w-96">
                 <div className="relative h-full w-full overflow-hidden rounded-full">
                   <Image
-                    src="/me.jpg"
+                    src="/Resources/me.jpg"
                     alt="Rajkumar Sanjay"
                     fill
                     className="object-cover"
@@ -320,7 +320,7 @@ function AboutSection() {
             </div>
 
             <a
-              href="/resume.pdf"
+              href="/Resources/resume.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full border-2 border-purple-500 bg-purple-500/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-purple-500/20"
             >
@@ -396,7 +396,7 @@ const skills = [
     name: "Python",
     level: 85,
     category: "Languages",
-    icon: "🐍",
+    icon: "public/Resources/python.png",
     color: "from-green-500 to-emerald-500",
   },
   {
