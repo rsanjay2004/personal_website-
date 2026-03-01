@@ -515,7 +515,7 @@ const projects = [
     title: "AUV Control System",
     description:
       "Advanced embedded control system for autonomous underwater vehicle with CAN bus communication, sensor fusion, and real-time navigation.",
-    image: "/images/projects/auv.jpg",
+    image: "/Resources/auv.jpg",
     tags: ["Embedded C", "CAN Bus", "Thrusters", "Real-time OS"],
     github: "https://github.com/rsanjay2004/hornet",
     demo: "/Resources/auv.jpg",
@@ -537,7 +537,7 @@ const projects = [
     title: "mBot Maze Navigator",
     description:
       "Autonomous maze-solving robot using ultrasonic sensors and path optimization algorithms for efficient navigation.",
-    image: "/images/projects/mbot.jpg",
+    image: "/Resources/mbot.png",
     tags: ["C++", "Arduino", "Algorithms", "Robotics"],
     github: "https://github.com/rsanjay2004/mbot-maze",
     demo: "/Resources/mbot.png",
@@ -726,7 +726,7 @@ function ContactSection() {
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Let&apos;s Build Something{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
-              Amazing
+              Amazing Together
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-slate-400">
