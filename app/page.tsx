@@ -342,7 +342,7 @@ function AboutSection() {
               </div>
               <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="Resources/work.jpg"
+                  src="Resources/work.JPG"
                   alt="Workspace"
                   fill
                   className="object-cover transition group-hover:scale-110"
@@ -542,7 +542,7 @@ const projects = [
     github: "https://github.com/rsanjay2004/cg1111a_mbot_code",
     demo: "/Resources/mbot.png",
     category: "Robotics",
-    featured: true,
+    featured: false,
   },
   // {
   //   // title: "Real-Time Weather Dashboard",
