@@ -342,7 +342,7 @@ function AboutSection() {
               </div>
               <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="Resources/auv4.png"
+                  src="Resources/work.png"
                   alt="Workspace"
                   fill
                   className="object-cover transition group-hover:scale-110"
