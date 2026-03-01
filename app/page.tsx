@@ -96,7 +96,7 @@ function Navbar() {
               size={24}
             />
             <span className="text-lg font-bold text-slate-900 dark:text-white">
-              SANJAY
+              RSANJAY
             </span>
           </div>
 
@@ -169,7 +169,7 @@ function Hero() {
               <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
                 Future
               </span>{" "}
-              with Code
+              through Coding
             </h1>
 
             <p className="max-w-xl text-lg text-slate-300">
@@ -177,9 +177,9 @@ function Hero() {
               <span className="font-semibold text-white">
                 Rajkumar Sanjay
               </span>
-              , a Computer Engineering student who loves turning complex
+              , a Y1 Computer Engineering student who loves turning complex
               problems into elegant solutions through software, hardware, and
-              AI.
+              AI/ML.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
@@ -263,7 +263,7 @@ function Hero() {
 
               <div className="animate-float-delayed absolute -left-4 bottom-20 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
                 <p className="text-xs text-slate-400">Projects Built</p>
-                <p className="text-2xl font-bold text-white">7+</p>
+                <p className="text-2xl font-bold text-white">5+</p>
               </div>
             </div>
           </div>
@@ -315,7 +315,7 @@ function AboutSection() {
 
               <p>
                 When I&apos;m not coding, you&apos;ll find me tinkering with
-                Arduino projects or learning the latest in web development.
+                Arduino projects or exploring new food trends.
               </p>
             </div>
 
@@ -334,16 +334,16 @@ function AboutSection() {
             <div className="space-y-4">
               <div className="group relative h-48 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="/images/workspace.jpg"
-                  alt="Workspace"
+                  src="Resources/auv2.JPG"
+                  alt="Robotics Project"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
               </div>
               <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="/images/robot.jpg"
-                  alt="Robotics Project"
+                  src="Resources/auv4.png"
+                  alt="Workspace"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
@@ -353,16 +353,16 @@ function AboutSection() {
             <div className="space-y-4 pt-8">
               <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="/images/code-screen.jpg"
-                  alt="Coding"
+                  src="Resources/auv4.png"
+                  alt="PCB Designing"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
               </div>
               <div className="group relative h-48 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="/images/team.jpg"
-                  alt="Team"
+                  src="Resources/food1.png"
+                  alt="Food"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
@@ -427,13 +427,13 @@ const skills = [
     icon: "arudino.svg",
     color: "from-purple-500 to-pink-500",
   },
-  // {
-  //   name: "Machine Learning",
-  //   level: 80,
-  //   category: "AI/ML",
-  //   icon: "🧠",
-  //   color: "from-indigo-500 to-purple-500",
-  // },
+  {
+    name: "Altium Designer",
+    level: 80,
+    category: "PCB Designing",
+    icon: "alitum.png",
+    color: "from-indigo-500 to-purple-500",
+  },
 ];
 
 function SkillsSection() {
