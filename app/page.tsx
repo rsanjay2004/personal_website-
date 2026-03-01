@@ -342,7 +342,7 @@ function AboutSection() {
               </div>
               <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="Resources/work.png"
+                  src="Resources/work.jpg"
                   alt="Workspace"
                   fill
                   className="object-cover transition group-hover:scale-110"
@@ -539,7 +539,7 @@ const projects = [
       "Autonomous maze-solving robot using ultrasonic sensors and path optimization algorithms for efficient navigation.",
     image: "/Resources/mbot.png",
     tags: ["C++", "Arduino", "Algorithms", "Robotics"],
-    github: "https://github.com/rsanjay2004/mbot-maze",
+    github: "https://github.com/rsanjay2004/cg1111a_mbot_code",
     demo: "/Resources/mbot.png",
     category: "Robotics",
     featured: true,
