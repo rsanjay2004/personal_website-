@@ -303,7 +303,7 @@ function AboutSection() {
             <div className="space-y-4 text-slate-300">
               <p>
                 I&apos;m currently pursuing Computer Engineering at the National
-                University of Singapore, where I&apos;m constantly exploring the
+                University of Singapore, where I&apos;m constantly exploring
                 my interests in software and hardware.
               </p>
 
