@@ -4,7 +4,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Rajkumar Sanjay | Portfolio",
-  description: "Personal portfolio built with Next.js and Tailwind CSS",
+  description:
+    "Rajkumar Sanjay's portfolio of software, AI, embedded systems, robotics and automation projects.",
 };
 
 export default function RootLayout({
@@ -20,4 +21,3 @@ export default function RootLayout({
     </html>
   );
 }
-

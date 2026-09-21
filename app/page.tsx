@@ -2,25 +2,34 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import {
-  Moon,
-  Sun,
+  BrainCircuit,
+  CheckCircle2,
+  ChevronDown,
+  Code2,
+  Download,
+  ExternalLink,
+  FlaskConical,
   Github,
+  GraduationCap,
+  Layers,
   Linkedin,
   Mail,
-  Download,
   MapPin,
-  GraduationCap,
-  ExternalLink,
-  Code2,
+  Moon,
+  Rocket,
+  Satellite,
+  ShieldCheck,
   Sparkles,
-  ChevronDown,
+  Sprout,
+  Store,
+  Sun,
   Terminal,
+  Trophy,
+  Waves,
 } from "lucide-react";
-
-// ---------------- NAV ITEMS ----------------
 
 const navItems = [
   { label: "Home", href: "#hero" },
@@ -30,32 +39,25 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-// ---------------- NAVBAR ----------------
-
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState<boolean | null>(null);
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
 
-  // 1) Decide initial theme (localStorage or system preference)
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
+    const storedTheme = window.localStorage.getItem("theme");
 
     if (storedTheme === "dark") {
-      setDarkMode(true);
-    } else if (storedTheme === "light") {
-      setDarkMode(false);
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setDarkMode(prefersDark);
+      return true;
     }
-  }, []);
 
-  // 2) Apply theme to <html> and persist
+    if (storedTheme === "light") {
+      return false;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
   useEffect(() => {
-    if (darkMode === null) return;
-
     const root = window.document.documentElement;
 
     if (darkMode) {
@@ -67,15 +69,11 @@ function Navbar() {
     }
   }, [darkMode]);
 
-  // 3) Shrink navbar on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Avoid flicker while darkMode is still null
-  if (darkMode === null) return null;
 
   return (
     <header
@@ -84,13 +82,8 @@ function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-6xl px-4">
-        <div
-          className={`flex items-center justify-between rounded-2xl border px-6 py-3 backdrop-blur-xl transition-all duration-300
-            bg-white/70 border-slate-300/40 shadow-lg
-            dark:bg-slate-950/80 dark:border-slate-700/40`}
-        >
-          {/* Logo */}
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between rounded-2xl border border-slate-300/40 bg-white/70 px-6 py-3 shadow-lg backdrop-blur-xl transition-all duration-300 dark:border-slate-700/40 dark:bg-slate-950/80">
+          <a href="#hero" className="flex items-center gap-2">
             <Terminal
               className="text-indigo-500 dark:text-indigo-400"
               size={24}
@@ -98,9 +91,8 @@ function Navbar() {
             <span className="text-lg font-bold text-slate-900 dark:text-white">
               RSANJAY
             </span>
-          </div>
+          </a>
 
-          {/* Nav links */}
           <nav className="hidden items-center gap-4 md:flex">
             {navItems.map((item) => (
               <a
@@ -114,8 +106,8 @@ function Navbar() {
             ))}
           </nav>
 
-          {/* Dark Mode Toggle */}
           <button
+            aria-label="Toggle dark mode"
             onClick={() => setDarkMode(!darkMode)}
             className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-700 transition hover:bg-indigo-500/20 hover:text-indigo-500 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-indigo-400"
           >
@@ -126,8 +118,6 @@ function Navbar() {
     </header>
   );
 }
-
-// ---------------- HERO SECTION ----------------
 
 function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -145,7 +135,6 @@ function Hero() {
       id="hero"
       className="relative flex min-h-screen items-center overflow-hidden pt-24"
     >
-      {/* animated radial gradient following cursor */}
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
@@ -155,37 +144,40 @@ function Hero() {
 
       <div className="mx-auto w-full max-w-6xl px-4">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left content */}
-          <div className="space-y-6 animate-fade-in">
+          <div className="animate-fade-in space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2">
               <Sparkles className="text-indigo-400" size={16} />
               <span className="text-sm text-indigo-300">
-                Open to Opportunities
+                Computer Engineering at NUS
               </span>
             </div>
 
             <h1 className="text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
-              Building the{" "}
+              Building across{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                Future
-              </span>{" "}
-              through Coding
+                software, AI and hardware
+              </span>
             </h1>
 
             <p className="max-w-xl text-lg text-slate-300">
-              Hey there! I&apos;m{" "}
+              I&apos;m{" "}
               <span className="font-semibold text-white">
                 Rajkumar Sanjay
               </span>
-              , a Y1 Computer Engineering student who loves turning complex
-              problems into elegant solutions through software, hardware, and
-              AI/ML.
+              , a Computer Engineering student at NUS pursuing a second major
+              in Innovation & Design. My work spans full-stack products,
+              AI-assisted applications, embedded systems, robotics and
+              automation.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
               <span className="flex items-center gap-2">
                 <GraduationCap size={18} className="text-indigo-400" />
-                Y1 @ NUS
+                NUS Computer Engineering
+              </span>
+              <span className="flex items-center gap-2">
+                <Layers size={18} className="text-indigo-400" />
+                Innovation & Design
               </span>
               <span className="flex items-center gap-2">
                 <MapPin size={18} className="text-indigo-400" />
@@ -206,15 +198,18 @@ function Hero() {
               </a>
 
               <a
-                href="#contact"
-                className="rounded-full border-2 border-slate-700 bg-slate-900/50 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-indigo-500 hover:bg-slate-800/50"
+                href="/Resources/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 rounded-full border-2 border-slate-700 bg-slate-900/50 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-indigo-500 hover:bg-slate-800/50"
               >
-                Get in Touch
+                <Download size={16} />
+                Resume
               </a>
             </div>
 
             <div className="flex gap-3 pt-4">
               <a
+                aria-label="GitHub"
                 href="https://github.com/rsanjay2004"
                 target="_blank"
                 rel="noreferrer"
@@ -223,6 +218,7 @@ function Hero() {
                 <Github size={20} />
               </a>
               <a
+                aria-label="LinkedIn"
                 href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                 target="_blank"
                 rel="noreferrer"
@@ -231,6 +227,7 @@ function Hero() {
                 <Linkedin size={20} />
               </a>
               <a
+                aria-label="Email"
                 href="mailto:rsanjay2004@gmail.com"
                 className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-400"
               >
@@ -239,10 +236,9 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right - photo + stat bubbles */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="animate-pulse absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-20 blur-3xl" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-20 blur-3xl" />
 
               <div className="relative h-80 w-80 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-2 shadow-2xl lg:h-96 lg:w-96">
                 <div className="relative h-full w-full overflow-hidden rounded-full">
@@ -257,28 +253,25 @@ function Hero() {
               </div>
 
               <div className="animate-float absolute -right-4 top-16 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
-                <p className="text-xs text-slate-400">Lines of Code</p>
-                <p className="text-2xl font-bold text-white">2K+</p>
+                <p className="text-xs text-slate-400">Recent focus</p>
+                <p className="text-2xl font-bold text-white">AI + Systems</p>
               </div>
 
               <div className="animate-float-delayed absolute -left-4 bottom-20 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
-                <p className="text-xs text-slate-400">Projects Built</p>
-                <p className="text-2xl font-bold text-white">5+</p>
+                <p className="text-xs text-slate-400">Projects</p>
+                <p className="text-2xl font-bold text-white">10+</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <ChevronDown className="text-slate-500" size={32} />
       </div>
     </section>
   );
 }
-
-// ---------------- ABOUT SECTION ----------------
 
 function AboutSection() {
   return (
@@ -294,28 +287,31 @@ function AboutSection() {
             </div>
 
             <h2 className="text-4xl font-bold text-white">
-              Passion Meets{" "}
+              Product thinking meets{" "}
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Innovation
+                engineering depth
               </span>
             </h2>
 
             <div className="space-y-4 text-slate-300">
               <p>
-                I&apos;m currently pursuing Computer Engineering at the National
-                University of Singapore, where I&apos;m constantly exploring
-                my interests in software and hardware.
+                I like projects where software has to understand the physical
+                world: robots, vessels, greenhouses, learning workflows and
+                creator platforms all ask for a mix of code, systems thinking
+                and user empathy.
               </p>
 
               <p>
-                My journey in tech started with robotics competitions, and has
-                evolved into a passion for building web development,
-                embedded systems, and experimenting with AI/ML technologies.
+                Since February 2026, I&apos;ve been building and researching
+                across AI-assisted web applications, automation, computer
+                vision, recommender-system workflows and experimental
+                materials.
               </p>
 
               <p>
-                When I&apos;m not coding, you&apos;ll find me tinkering with
-                Arduino projects or exploring new food trends.
+                I care about making prototypes honest: clear about what works,
+                clear about what is still being tested and useful enough for
+                the next engineering decision.
               </p>
             </div>
 
@@ -329,21 +325,20 @@ function AboutSection() {
             </a>
           </div>
 
-          {/* image collage */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <div className="group relative h-48 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="Resources/auv2.JPG"
-                  alt="Robotics Project"
+                  src="/Resources/auv2.JPG"
+                  alt="Autonomous underwater vehicle work"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
               </div>
               <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="Resources/work.JPG"
-                  alt="Workspace"
+                  src="/Resources/work.JPG"
+                  alt="Engineering workspace"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
@@ -353,16 +348,16 @@ function AboutSection() {
             <div className="space-y-4 pt-8">
               <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="Resources/auv4.png"
-                  alt="PCB Designing"
+                  src="/Resources/auv4.png"
+                  alt="Hardware and PCB work"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
               </div>
               <div className="group relative h-48 overflow-hidden rounded-2xl border border-slate-800">
                 <Image
-                  src="Resources/food1.png"
-                  alt="Food"
+                  src="/Resources/food1.png"
+                  alt="Personal interests and food exploration"
                   fill
                   className="object-cover transition group-hover:scale-110"
                 />
@@ -375,19 +370,10 @@ function AboutSection() {
   );
 }
 
-// ---------------- SKILLS SECTION ----------------
-
 const skills = [
   {
-    name: "C++",
-    level: 75,
-    category: "Languages",
-    icon: "c.svg",
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
     name: "TypeScript",
-    level: 75,
+    level: 82,
     category: "Languages",
     icon: "typescript.svg",
     color: "from-yellow-500 to-orange-500",
@@ -400,8 +386,15 @@ const skills = [
     color: "from-green-500 to-emerald-500",
   },
   {
+    name: "C/C++",
+    level: 78,
+    category: "Languages",
+    icon: "c.svg",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
     name: "React & Next.js",
-    level: 75,
+    level: 82,
     category: "Frameworks",
     icon: "react.svg",
     color: "from-cyan-500 to-blue-500",
@@ -415,7 +408,7 @@ const skills = [
   },
   {
     name: "Git & GitHub",
-    level: 75,
+    level: 78,
     category: "Tools",
     icon: "git.svg",
     color: "from-orange-500 to-red-500",
@@ -430,7 +423,7 @@ const skills = [
   {
     name: "Altium Designer",
     level: 80,
-    category: "PCB Designing",
+    category: "PCB Design",
     icon: "alitum.png",
     color: "from-indigo-500 to-purple-500",
   },
@@ -453,8 +446,8 @@ function SkillsSection() {
             Skills & Technologies
           </h2>
           <p className="mx-auto max-w-2xl text-slate-400">
-            A comprehensive toolkit built through hands-on projects and
-            continuous learning.
+            A toolkit shaped by full-stack development, AI prototypes,
+            embedded systems and hands-on engineering projects.
           </p>
         </div>
 
@@ -494,7 +487,7 @@ function SkillsSection() {
               </div>
 
               <p className="text-sm text-slate-400">
-                Proficiency: {skill.level}%
+                Working confidence: {skill.level}%
               </p>
 
               <div
@@ -508,62 +501,339 @@ function SkillsSection() {
   );
 }
 
-// ---------------- PROJECTS SECTION ----------------
+type Project = {
+  title: string;
+  category: string;
+  summary: string;
+  role: string;
+  status: string;
+  technicalFocus: string[];
+  contribution: string[];
+  outcome?: string;
+  image?: string;
+  imageAlt?: string;
+  icon: typeof BrainCircuit;
+  tags: string[];
+  links?: { label: string; href: string; kind: "code" | "demo" | "asset" }[];
+  featured?: boolean;
+};
 
-const projects = [
+const projects: Project[] = [
   {
-    title: "AUV Control System",
-    description:
-      "Advanced embedded control system for autonomous underwater vehicle with CAN bus communication, sensor fusion, and real-time navigation.",
-    image: "/Resources/auv.jpg",
-    tags: ["Embedded C", "CAN Bus", "Thrusters", "Real-time OS"],
-    github: "https://github.com/rsanjay2004/hornet",
-    demo: "/Resources/auv.jpg",
-    category: "Embedded Systems",
+    title: "LocalLens",
+    category: "AI / Web Development / Hackathon",
+    summary:
+      "Creator-specific trend intelligence prototype for finding social-media opportunities that fit a creator's niche and audience.",
+    role: "Team contributor / developer",
+    status: "Projet: Hack & Hire 2026 winner; interview opportunity earned",
+    technicalFocus: [
+      "AI-assisted prompt analysis",
+      "Creator-profile matching",
+      "Cached social-platform trend evidence",
+    ],
+    contribution: [
+      "Co-developed the challenge prototype and helped turn the creator-focused problem into a working product concept.",
+      "Worked with Supabase-backed trend data, OpenAI-assisted analysis and recommendation logic.",
+      "Kept trend suggestions grounded in evidence rather than presenting generated ideas as verified trends.",
+    ],
+    outcome:
+      "Challenge-winning prototype for the Influencees Product & AI Challenge.",
+    icon: Trophy,
+    tags: ["Next.js", "React", "TypeScript", "Tailwind", "Supabase", "OpenAI"],
+    links: [
+      {
+        label: "Code",
+        href: "https://github.com/rsanjay2004/Influencees_LocalLens",
+        kind: "code",
+      },
+    ],
     featured: true,
   },
-  // {
-    // title: "AI Study Companion",
-    // description:
-    //   "Full-stack web application using NLP to generate summaries and practice questions from study notes, with spaced repetition algorithm.",
-    // image: "/images/projects/ai-study.jpg",
-    // tags: ["Next.js", "Python", "OpenAI", "PostgreSQL"],
-    // github: "https://github.com/rsanjay2004/ai-study",
-    // demo: "https://ai-study-demo.vercel.app",
-    // category: "AI/ML",
-    // featured: true,
-  // },
+  {
+    title: "Planora",
+    category: "Full-Stack Development / AI / Productivity",
+    summary:
+      "AI study workspace that brings course materials, active recall, planning, focus sessions and group collaboration into one workflow.",
+    role: "Co-developer",
+    status: "NUS Orbital, Artemis Track",
+    technicalFocus: [
+      "Document-grounded AI assistance",
+      "Task and calendar workflows",
+      "Collaborative study spaces",
+    ],
+    contribution: [
+      "Worked across the full stack, including backend integration and user-facing study workflows.",
+      "Connected course-material ingestion, planning tools, flashcards, focus mode and collaboration surfaces.",
+      "Contributed to user testing and iterative improvements across the application.",
+    ],
+    outcome:
+      "Current repository documents shipped dashboard, tasks, calendar, knowledge base, AI assistant, flashcards, focus mode, groups and Telegram bot flows.",
+    image: "/Resources/projects/planora.png",
+    imageAlt: "Planora project board showing study workspace features",
+    icon: BrainCircuit,
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "Clerk",
+      "Convex",
+      "Gemini",
+    ],
+    links: [
+      { label: "Live app", href: "https://planora.vercel.app", kind: "demo" },
+      {
+        label: "Code",
+        href: "https://github.com/balasiddarthan22/Planora",
+        kind: "code",
+      },
+    ],
+    featured: true,
+  },
+  {
+    title: "Greenhouse Automation Research",
+    category: "Research / Agritech / Automation",
+    summary:
+      "Ongoing undergraduate research into greenhouse sensing and control systems for custom agricultural automation software.",
+    role: "Undergraduate researcher",
+    status: "Ongoing R&D for a 300 m2 greenhouse",
+    technicalFocus: [
+      "Environmental sensing",
+      "Climate and irrigation control",
+      "Hardware-software integration",
+    ],
+    contribution: [
+      "Investigating Hydro-X Pro and Aqua-X Pro controller capabilities, interfaces and system architecture.",
+      "Exploring communication protocols and integration options for custom software control.",
+      "Connecting technical choices to practical greenhouse operation needs.",
+    ],
+    icon: Sprout,
+    tags: ["Automation", "Sensors", "Control Systems", "Agritech"],
+    featured: true,
+  },
+  {
+    title: "Hornet XI AUV",
+    category: "Embedded Systems / Robotics",
+    summary:
+      "Embedded control work for an autonomous underwater vehicle, building on hands-on robotics and hardware development.",
+    role: "Developer",
+    status: "Project work",
+    technicalFocus: [
+      "Embedded control",
+      "Robot hardware",
+      "Underwater vehicle systems",
+    ],
+    contribution: [
+      "Worked on AUV control-system code and hardware-facing implementation details.",
+      "Used existing vehicle assets and repository-backed work from the portfolio's earlier Hornet entry.",
+    ],
+    image: "/Resources/auv.jpg",
+    imageAlt: "Autonomous underwater vehicle hardware",
+    icon: Waves,
+    tags: ["Embedded C", "C++", "Robotics", "AUV"],
+    links: [
+      {
+        label: "Code",
+        href: "https://github.com/rsanjay2004/hornet",
+        kind: "code",
+      },
+    ],
+    featured: true,
+  },
+  {
+    title: "SeaCheck",
+    category: "AI / Computer Vision / Web Development",
+    summary:
+      "Vessel-safety inspection prototype combining computer-vision assistance with a shared web-based workflow.",
+    role: "Team contributor / developer",
+    status: "Sup' Hackathon participation",
+    technicalFocus: [
+      "Computer-vision integration",
+      "Authentication",
+      "Shared inspection alerts",
+    ],
+    contribution: [
+      "Integrated computer-vision functionality into the inspection workflow.",
+      "Built web application features, authentication and shared-alert functionality.",
+      "Framed the system as a prototype for communicating safety concerns, not a certified inspection product.",
+    ],
+    icon: ShieldCheck,
+    tags: ["Computer Vision", "Web App", "Authentication", "Alerts"],
+  },
+  {
+    title: "AutoScaleRec",
+    category: "AI / Machine Learning / Hackathon",
+    summary:
+      "Hackathon exploration of automated machine-learning research workflows for recommender systems.",
+    role: "Participant / developer",
+    status: "TikTok TechJam 2026 participation",
+    technicalFocus: [
+      "Recommendation-model experimentation",
+      "Automated research workflows",
+      "Iteration support",
+    ],
+    contribution: [
+      "Explored how parts of recommender-system research and experimentation could be automated.",
+      "Kept the portfolio description limited to confirmed scope until framework, responsibilities and results are verified.",
+    ],
+    icon: Rocket,
+    tags: ["Machine Learning", "Recommender Systems", "Research Workflow"],
+  },
+  {
+    title: "Thermally Debondable Adhesive",
+    category: "Materials Innovation / Sustainability",
+    summary:
+      "EIC 2026 investigation into wax-EVA adhesive blends for recyclable packaging with heat-triggered separation.",
+    role: "Experimental engineering contributor",
+    status: "EIC 2026 project",
+    technicalFocus: [
+      "Adhesion testing",
+      "Thermal behaviour",
+      "Recyclable packaging",
+    ],
+    contribution: [
+      "Formulated material blends and evaluated how microcrystalline wax and EVA affect adhesion and debonding.",
+      "Compared the engineering trade-off between a useful service bond and heat-enabled separation during recycling.",
+    ],
+    icon: FlaskConical,
+    tags: ["Materials", "Sustainability", "Testing", "Packaging"],
+  },
+  {
+    title: "Autonomous Life Buoy",
+    category: "Robotics / Computer Vision / Innovation & Design",
+    summary:
+      "Rescue-system concept pairing camera-based drowning detection with a motorised life buoy architecture.",
+    role: "Team contributor",
+    status: "Concept and prototype development",
+    technicalFocus: [
+      "Camera-based detection",
+      "Raspberry Pi ground station",
+      "ESP32 buoy control",
+    ],
+    contribution: [
+      "Worked on the rescue-system concept and its hardware-software architecture.",
+      "Connected visual detection, a ground station and embedded buoy control as a proposed system design.",
+    ],
+    image: "/Resources/projects/seacheck.png",
+    imageAlt: "Motorised life buoy prototype image labelled AEGIS",
+    icon: ShieldCheck,
+    tags: ["Raspberry Pi", "ESP32", "Computer Vision", "Thrusters"],
+  },
+  {
+    title: "CubeSat Modelling and Orbital Analysis",
+    category: "Aerospace / CAD / Simulation",
+    summary:
+      "CDE2311 academic coursework exploring CubeSat mechanical modelling and orbital analysis.",
+    role: "Student contributor",
+    status: "Academic coursework",
+    technicalFocus: [
+      "Fusion 360 CAD",
+      "GMAT orbital simulation",
+      "Ground-station contact analysis",
+    ],
+    contribution: [
+      "Worked with separate CubeSat structural components and bodies in CAD.",
+      "Explored orbital configuration, simulation and NUS CRISP ground-station contact analysis.",
+    ],
+    icon: Satellite,
+    tags: ["Fusion 360", "GMAT", "CAD", "Simulation"],
+  },
   {
     title: "mBot Maze Navigator",
-    description:
-      "Autonomous maze-solving robot using ultrasonic sensors and path optimization algorithms for efficient navigation.",
-    image: "/Resources/mbot.png",
-    tags: ["C++", "Arduino", "Algorithms", "Robotics"],
-    github: "https://github.com/rsanjay2004/cg1111a_mbot_code",
-    demo: "/Resources/mbot.png",
     category: "Robotics",
-    featured: false,
+    summary:
+      "Autonomous maze-solving robot using ultrasonic sensing and path-planning logic for navigation.",
+    role: "Developer",
+    status: "Robotics coursework/project",
+    technicalFocus: ["Ultrasonic sensing", "Path optimisation", "Robot control"],
+    contribution: [
+      "Implemented robot navigation behaviour using C++ and Arduino tooling.",
+      "Built on iterative testing to improve autonomous maze traversal.",
+    ],
+    image: "/Resources/mbot.png",
+    imageAlt: "mBot maze navigation robot",
+    icon: Rocket,
+    tags: ["C++", "Arduino", "Algorithms", "Robotics"],
+    links: [
+      {
+        label: "Code",
+        href: "https://github.com/rsanjay2004/cg1111a_mbot_code",
+        kind: "code",
+      },
+    ],
   },
-  // {
-  //   // title: "Real-Time Weather Dashboard",
-  //   // description:
-  //   //   "Interactive weather visualization dashboard with real-time data from multiple APIs and predictive analytics.",
-  //   // image: "/images/projects/weather.jpg",
-  //   // tags: ["React", "D3.js", "Weather API", "Tailwind"],
-  //   // github: "https://github.com/rsanjay2004/weather-dash",
-  //   // demo: "https://weather-dash-demo.vercel.app",
-  //   // category: "Web Development",
-  //   // featured: false,
-  // },
+  {
+    title: "HHS Stickers",
+    category: "Entrepreneurship",
+    summary:
+      "Custom-sticker business co-founded with friends, selling more than 200 stickers in its first semester.",
+    role: "Co-founder",
+    status: "Profitable student venture",
+    technicalFocus: [
+      "Customer requests",
+      "Small-business operations",
+      "Product fulfilment",
+    ],
+    contribution: [
+      "Co-founded and operated the sticker venture with friends.",
+      "Helped turn custom design requests into delivered products while managing early demand.",
+    ],
+    icon: Store,
+    tags: ["Entrepreneurship", "Product", "Operations"],
+  },
 ];
+
+function ProjectVisual({ project }: { project: Project }) {
+  const Icon = project.icon;
+
+  if (project.image) {
+    return (
+      <Image
+        src={project.image}
+        alt={project.imageAlt ?? project.title}
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover transition duration-500 group-hover:scale-105"
+      />
+    );
+  }
+
+  return (
+    <div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
+      <div className="flex h-24 w-24 items-center justify-center rounded-2xl border border-indigo-500/30 bg-indigo-500/10 text-indigo-300">
+        <Icon size={42} />
+      </div>
+    </div>
+  );
+}
+
+function ProjectLink({
+  link,
+}: {
+  link: NonNullable<Project["links"]>[number];
+}) {
+  const Icon = link.kind === "code" ? Code2 : ExternalLink;
+
+  return (
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:border-indigo-500 hover:bg-slate-800/50"
+    >
+      <Icon size={16} />
+      {link.label}
+    </a>
+  );
+}
 
 function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = [
-    "All",
-    ...Array.from(new Set(projects.map((p) => p.category))),
-  ];
+  const categories = useMemo(
+    () => ["All", ...Array.from(new Set(projects.map((p) => p.category)))],
+    []
+  );
 
   const filteredProjects =
     activeCategory === "All"
@@ -581,21 +851,21 @@ function ProjectsSection() {
             Portfolio
           </div>
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
-            Featured Projects
+            Recent Projects
           </h2>
-          <p className="mx-auto max-w-2xl text-slate-400">
-            A selection of projects showcasing my skills across different
-            domains.
+          <p className="mx-auto max-w-3xl text-slate-400">
+            A curated view of recent software, AI, research, robotics and
+            innovation work, with each entry focused on what the project does
+            and what I contributed.
           </p>
         </div>
 
-        {/* Category filter */}
         <div className="mb-12 flex flex-wrap justify-center gap-3">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`rounded-full px-6 py-2.5 text-sm font-medium transition ${
+              className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
                 activeCategory === cat
                   ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg"
                   : "border border-slate-700 bg-slate-900/50 text-slate-300 hover:border-indigo-500"
@@ -606,98 +876,147 @@ function ProjectsSection() {
           ))}
         </div>
 
-        {/* Projects grid */}
         <div className="grid gap-8 md:grid-cols-2">
-          {filteredProjects.map((project, idx) => (
-            <article
-              key={project.title}
-              className={`group relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 transition hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 ${
-                project.featured ? "md:col-span-2 lg:col-span-1" : ""
-              }`}
-              style={{ animationDelay: `${idx * 100}ms` }}
-            >
-              {/* Project image */}
-              <div className="relative h-64 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+          {filteredProjects.map((project, idx) => {
+            const Icon = project.icon;
 
-                {project.featured && (
-                  <div className="absolute right-4 top-4 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-semibold text-yellow-300 backdrop-blur-sm">
-                    ⭐ Featured
-                  </div>
-                )}
-              </div>
+            return (
+              <article
+                key={project.title}
+                className={`group relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 transition hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 ${
+                  project.featured ? "md:col-span-2" : ""
+                }`}
+                style={{ animationDelay: `${idx * 80}ms` }}
+              >
+                <div
+                  className={`grid ${
+                    project.featured ? "lg:grid-cols-[1.05fr_1fr]" : ""
+                  }`}
+                >
+                  <div
+                    className={`relative overflow-hidden ${
+                      project.featured ? "min-h-[320px]" : "h-64"
+                    }`}
+                  >
+                    <ProjectVisual project={project} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-              {/* Content */}
-              <div className="space-y-4 p-6">
-                <div>
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-400">
-                      {project.category}
-                    </span>
+                    {project.featured && (
+                      <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-semibold text-yellow-200 backdrop-blur-sm">
+                        <Trophy size={14} />
+                        Featured
+                      </div>
+                    )}
                   </div>
 
-                  <h3 className="mb-2 text-2xl font-bold text-white transition group-hover:text-indigo-400">
-                    {project.title}
-                  </h3>
+                  <div className="space-y-5 p-6">
+                    <div className="space-y-3">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-400">
+                          {project.category}
+                        </span>
+                        <span className="inline-flex items-center gap-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs text-indigo-200">
+                          <Icon size={13} />
+                          {project.status}
+                        </span>
+                      </div>
 
-                  <p className="text-sm text-slate-300">
-                    {project.description}
-                  </p>
-                </div>
+                      <h3 className="text-2xl font-bold text-white transition group-hover:text-indigo-400">
+                        {project.title}
+                      </h3>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-lg bg-slate-800/50 px-3 py-1 text-xs text-slate-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                      <p className="text-sm leading-6 text-slate-300">
+                        {project.summary}
+                      </p>
+                    </div>
 
-                {/* Action buttons */}
-                <div className="flex gap-3 pt-2">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:border-indigo-500 hover:bg-slate-800/50"
-                    >
-                      <Code2 size={16} />
-                      Code
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2.5 text-sm font-medium text-white shadow-lg transition hover:shadow-xl"
-                    >
-                      <ExternalLink size={16} />
-                      Live Demo
-                    </a>
-                  )}
+                    <div className="grid gap-4 lg:grid-cols-2">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                          Role
+                        </p>
+                        <p className="text-sm text-slate-300">{project.role}</p>
+                      </div>
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                          Technical Focus
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technicalFocus.map((focus) => (
+                            <span
+                              key={focus}
+                              className="rounded-lg bg-slate-800/50 px-2.5 py-1 text-xs text-slate-300"
+                            >
+                              {focus}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        My Contribution
+                      </p>
+                      <ul className="space-y-2">
+                        {project.contribution.map((item) => (
+                          <li
+                            key={item}
+                            className="flex gap-2 text-sm leading-6 text-slate-300"
+                          >
+                            <CheckCircle2
+                              className="mt-0.5 shrink-0 text-emerald-400"
+                              size={16}
+                            />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {project.outcome && (
+                      <p className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm leading-6 text-emerald-100">
+                        {project.outcome}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-lg bg-slate-800/50 px-3 py-1 text-xs text-slate-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {project.links && project.links.length > 0 && (
+                      <div className="flex flex-wrap gap-3 pt-2">
+                        {project.links.map((link) => (
+                          <ProjectLink key={link.href} link={link} />
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-sm leading-6 text-slate-400">
+          <p>
+            Verification note: published copy avoids unconfirmed claims about
+            deployments, benchmark gains, production use, certified inspection
+            accuracy, controller reverse-engineering or competition wins beyond
+            those explicitly confirmed.
+          </p>
         </div>
       </div>
     </section>
   );
 }
-
-// ---------------- CONTACT SECTION ----------------
 
 function ContactSection() {
   const [formData, setFormData] = useState({
@@ -709,7 +1028,6 @@ function ContactSection() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Replace this with your actual submission logic (email service, API, etc.)
     console.log("Form submitted:", formData);
   };
 
@@ -726,17 +1044,17 @@ function ContactSection() {
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Let&apos;s Build Something{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
-              Amazing Together
+              Useful Together
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-slate-400">
-            Have a project in mind or just want to chat? I&apos;m always open
-            to new opportunities and collaborations.
+            Have a project in mind, a research direction to explore or a
+            product idea to prototype? I&apos;m open to thoughtful
+            collaborations.
           </p>
         </div>
 
         <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr]">
-          {/* Contact info cards */}
           <div className="space-y-6">
             <div className="group rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 transition hover:border-indigo-500/50">
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500">
@@ -784,7 +1102,6 @@ function ContactSection() {
             </div>
           </div>
 
-          {/* Contact form */}
           <form
             onSubmit={handleSubmit}
             className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-8 shadow-2xl"
@@ -803,7 +1120,7 @@ function ContactSection() {
                       setFormData({ ...formData, name: e.target.value })
                     }
                     className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                    placeholder="John Doe"
+                    placeholder="Your name"
                   />
                 </div>
 
@@ -819,7 +1136,7 @@ function ContactSection() {
                       setFormData({ ...formData, email: e.target.value })
                     }
                     className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                    placeholder="john@example.com"
+                    placeholder="you@example.com"
                   />
                 </div>
               </div>
@@ -836,7 +1153,7 @@ function ContactSection() {
                     setFormData({ ...formData, subject: e.target.value })
                   }
                   className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                  placeholder="Project Collaboration"
+                  placeholder="Project collaboration"
                 />
               </div>
 
@@ -870,14 +1187,11 @@ function ContactSection() {
   );
 }
 
-// ---------------- FOOTER ----------------
-
 function Footer() {
   return (
     <footer className="border-t border-slate-800/50 bg-slate-950">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="grid gap-12 md:grid-cols-3">
-          {/* Brand */}
           <div>
             <div className="mb-4 flex items-center gap-2">
               <Terminal className="text-indigo-400" size={28} />
@@ -886,11 +1200,12 @@ function Footer() {
               </span>
             </div>
             <p className="mb-6 text-sm text-slate-400">
-              Computer Engineering Student passionate about building innovative
-              solutions through code.
+              Computer Engineering student building thoughtful software,
+              AI-assisted systems, robotics and automation prototypes.
             </p>
             <div className="flex gap-3">
               <a
+                aria-label="GitHub"
                 href="https://github.com/rsanjay2004"
                 target="_blank"
                 rel="noreferrer"
@@ -899,6 +1214,7 @@ function Footer() {
                 <Github size={18} />
               </a>
               <a
+                aria-label="LinkedIn"
                 href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                 target="_blank"
                 rel="noreferrer"
@@ -907,6 +1223,7 @@ function Footer() {
                 <Linkedin size={18} />
               </a>
               <a
+                aria-label="Email"
                 href="mailto:rsanjay2004@gmail.com"
                 className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800/50 text-slate-400 transition hover:bg-indigo-500/20 hover:text-indigo-400"
               >
@@ -915,7 +1232,6 @@ function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Quick Links
@@ -934,7 +1250,6 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Get In Touch
@@ -962,17 +1277,12 @@ function Footer() {
         </div>
 
         <div className="mt-12 border-t border-slate-800/50 pt-8 text-center text-sm text-slate-500">
-          <p>
-            © {new Date().getFullYear()} Rajkumar Sanjay. Crafted with ❤️ and
-            lots of ☕
-          </p>
+          <p>© {new Date().getFullYear()} Rajkumar Sanjay.</p>
         </div>
       </div>
     </footer>
   );
 }
-
-// ---------------- PAGE ----------------
 
 export default function Home() {
   return (
