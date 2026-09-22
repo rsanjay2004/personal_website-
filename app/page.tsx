@@ -41,21 +41,7 @@ const navItems = [
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-
-    const storedTheme = window.localStorage.getItem("theme");
-
-    if (storedTheme === "dark") {
-      return true;
-    }
-
-    if (storedTheme === "light") {
-      return false;
-    }
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -82,13 +68,13 @@ function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex items-center justify-between rounded-2xl border border-slate-300/40 bg-white/70 px-6 py-3 shadow-lg backdrop-blur-xl transition-all duration-300 dark:border-slate-700/40 dark:bg-slate-950/80">
+        <div className="flex items-center justify-between rounded-2xl border border-white/70 bg-white/55 px-6 py-3 shadow-xl shadow-slate-900/5 backdrop-blur-2xl transition-all duration-300">
           <a href="#hero" className="flex items-center gap-2">
             <Terminal
-              className="text-indigo-500 dark:text-indigo-400"
+              className="text-indigo-500 dark:text-indigo-500"
               size={24}
             />
-            <span className="text-lg font-bold text-slate-900 dark:text-white">
+            <span className="text-lg font-bold text-slate-900 dark:text-slate-950">
               RSANJAY
             </span>
           </a>
@@ -98,7 +84,7 @@ function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="group relative px-3 py-1 text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                className="group relative px-3 py-1 text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-700 dark:hover:text-slate-950"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 bg-indigo-500 transition-all group-hover:w-full" />
@@ -109,7 +95,7 @@ function Navbar() {
           <button
             aria-label="Toggle dark mode"
             onClick={() => setDarkMode(!darkMode)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-700 transition hover:bg-indigo-500/20 hover:text-indigo-500 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-indigo-400"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-700 transition hover:bg-indigo-500/20 hover:text-indigo-500 dark:bg-white/70 dark:text-slate-700 dark:hover:text-indigo-500"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -145,23 +131,23 @@ function Hero() {
       <div className="mx-auto w-full max-w-6xl px-4">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="animate-fade-in space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2">
-              <Sparkles className="text-indigo-400" size={16} />
-              <span className="text-sm text-indigo-300">
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-white/45 px-4 py-2 shadow-sm backdrop-blur-xl">
+              <Sparkles className="text-indigo-500" size={16} />
+              <span className="text-sm text-indigo-700">
                 Computer Engineering at NUS
               </span>
             </div>
 
-            <h1 className="text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="text-5xl font-bold leading-tight text-slate-950 md:text-6xl lg:text-7xl">
               Building across{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
                 software, AI and hardware
               </span>
             </h1>
 
-            <p className="max-w-xl text-lg text-slate-300">
+            <p className="max-w-xl text-lg text-slate-700">
               I&apos;m{" "}
-              <span className="font-semibold text-white">
+              <span className="font-semibold text-slate-950">
                 Rajkumar Sanjay
               </span>
               , a Computer Engineering student at NUS pursuing a second major
@@ -170,17 +156,17 @@ function Hero() {
               automation.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
               <span className="flex items-center gap-2">
-                <GraduationCap size={18} className="text-indigo-400" />
+                <GraduationCap size={18} className="text-indigo-500" />
                 NUS Computer Engineering
               </span>
               <span className="flex items-center gap-2">
-                <Layers size={18} className="text-indigo-400" />
+                <Layers size={18} className="text-indigo-500" />
                 Innovation & Design
               </span>
               <span className="flex items-center gap-2">
-                <MapPin size={18} className="text-indigo-400" />
+                <MapPin size={18} className="text-indigo-500" />
                 Singapore
               </span>
             </div>
@@ -200,7 +186,7 @@ function Hero() {
               <a
                 href="/Resources/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full border-2 border-slate-700 bg-slate-900/50 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-indigo-500 hover:bg-slate-800/50"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/55 px-8 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-slate-900/5 backdrop-blur-xl transition hover:border-indigo-500 hover:bg-white/70"
               >
                 <Download size={16} />
                 Resume
@@ -213,7 +199,7 @@ function Hero() {
                 href="https://github.com/rsanjay2004"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-400"
+                className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/60 bg-white/55 text-slate-700 shadow-lg shadow-slate-900/5 backdrop-blur-xl transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-500"
               >
                 <Github size={20} />
               </a>
@@ -222,14 +208,14 @@ function Hero() {
                 href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-400"
+                className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/60 bg-white/55 text-slate-700 shadow-lg shadow-slate-900/5 backdrop-blur-xl transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-500"
               >
                 <Linkedin size={20} />
               </a>
               <a
                 aria-label="Email"
                 href="mailto:rsanjay2004@gmail.com"
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800/50 text-slate-300 backdrop-blur-sm transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-400"
+                className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/60 bg-white/55 text-slate-700 shadow-lg shadow-slate-900/5 backdrop-blur-xl transition hover:scale-110 hover:bg-indigo-500/20 hover:text-indigo-500"
               >
                 <Mail size={20} />
               </a>
@@ -240,7 +226,7 @@ function Hero() {
             <div className="relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-20 blur-3xl" />
 
-              <div className="relative h-80 w-80 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-2 shadow-2xl lg:h-96 lg:w-96">
+              <div className="relative h-80 w-80 rounded-full border-4 border-white/60 bg-gradient-to-br from-white/80 to-indigo-100/60 p-2 shadow-2xl lg:h-96 lg:w-96">
                 <div className="relative h-full w-full overflow-hidden rounded-full">
                   <Image
                     src="/Resources/me.jpg"
@@ -252,14 +238,14 @@ function Hero() {
                 </div>
               </div>
 
-              <div className="animate-float absolute -right-4 top-16 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
-                <p className="text-xs text-slate-400">Recent focus</p>
-                <p className="text-2xl font-bold text-white">AI + Systems</p>
+              <div className="animate-float absolute -right-4 top-16 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-xl backdrop-blur-sm">
+                <p className="text-xs text-slate-600">Recent focus</p>
+                <p className="text-2xl font-bold text-slate-950">AI + Systems</p>
               </div>
 
-              <div className="animate-float-delayed absolute -left-4 bottom-20 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-3 shadow-xl backdrop-blur-sm">
-                <p className="text-xs text-slate-400">Projects</p>
-                <p className="text-2xl font-bold text-white">10+</p>
+              <div className="animate-float-delayed absolute -left-4 bottom-20 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-xl backdrop-blur-sm">
+                <p className="text-xs text-slate-600">Projects</p>
+                <p className="text-2xl font-bold text-slate-950">10+</p>
               </div>
             </div>
           </div>
@@ -277,23 +263,23 @@ function AboutSection() {
   return (
     <section
       id="about"
-      className="relative border-t border-slate-800/50 py-24"
+      className="relative border-t border-white/60 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="space-y-6">
-            <div className="inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm text-purple-300">
+            <div className="inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm text-purple-700">
               About Me
             </div>
 
-            <h2 className="text-4xl font-bold text-white">
+            <h2 className="text-4xl font-bold text-slate-950">
               Product thinking meets{" "}
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 engineering depth
               </span>
             </h2>
 
-            <div className="space-y-4 text-slate-300">
+            <div className="space-y-4 text-slate-700">
               <p>
                 I like projects where software has to understand the physical
                 world: robots, vessels, greenhouses, learning workflows and
@@ -318,7 +304,7 @@ function AboutSection() {
             <a
               href="/Resources/resume.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-full border-2 border-purple-500 bg-purple-500/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-purple-500/20"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-purple-500 bg-purple-500/10 px-6 py-3 text-sm font-semibold text-slate-950 backdrop-blur-sm transition hover:bg-purple-500/20"
             >
               <Download size={18} />
               Download Resume
@@ -327,7 +313,7 @@ function AboutSection() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
-              <div className="group relative h-48 overflow-hidden rounded-2xl border border-slate-800">
+              <div className="group relative h-48 overflow-hidden rounded-2xl border border-white/60">
                 <Image
                   src="/Resources/auv2.JPG"
                   alt="Autonomous underwater vehicle work"
@@ -335,7 +321,7 @@ function AboutSection() {
                   className="object-cover transition group-hover:scale-110"
                 />
               </div>
-              <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
+              <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/60">
                 <Image
                   src="/Resources/work.JPG"
                   alt="Engineering workspace"
@@ -346,7 +332,7 @@ function AboutSection() {
             </div>
 
             <div className="space-y-4 pt-8">
-              <div className="group relative h-64 overflow-hidden rounded-2xl border border-slate-800">
+              <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/60">
                 <Image
                   src="/Resources/auv4.png"
                   alt="Hardware and PCB work"
@@ -354,7 +340,7 @@ function AboutSection() {
                   className="object-cover transition group-hover:scale-110"
                 />
               </div>
-              <div className="group relative h-48 overflow-hidden rounded-2xl border border-slate-800">
+              <div className="group relative h-48 overflow-hidden rounded-2xl border border-white/60">
                 <Image
                   src="/Resources/food1.png"
                   alt="Personal interests and food exploration"
@@ -435,17 +421,17 @@ function SkillsSection() {
   return (
     <section
       id="skills"
-      className="relative border-t border-slate-800/50 py-24"
+      className="relative border-t border-white/60 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-16 text-center">
-          <div className="mb-4 inline-block rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-300">
+          <div className="mb-4 inline-block rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-700">
             Technical Skills
           </div>
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+          <h2 className="mb-4 text-4xl font-bold text-slate-950 md:text-5xl">
             Skills & Technologies
           </h2>
-          <p className="mx-auto max-w-2xl text-slate-400">
+          <p className="mx-auto max-w-2xl text-slate-600">
             A toolkit shaped by full-stack development, AI prototypes,
             embedded systems and hands-on engineering projects.
           </p>
@@ -457,7 +443,7 @@ function SkillsSection() {
               key={skill.name}
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
-              className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 transition hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10"
+              className="group relative overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-white/75 to-white/35 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-2xl transition hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10"
             >
               <div className="mb-4 flex items-start justify-between">
                 <Image
@@ -467,16 +453,16 @@ function SkillsSection() {
                   height={40}
                   className="object-contain"
                 />
-                <span className="rounded-full bg-slate-800 px-2 py-1 text-xs text-slate-400">
+                <span className="rounded-full bg-white/70 px-2 py-1 text-xs text-slate-600">
                   {skill.category}
                 </span>
               </div>
 
-              <h3 className="mb-2 text-lg font-semibold text-white">
+              <h3 className="mb-2 text-lg font-semibold text-slate-950">
                 {skill.name}
               </h3>
 
-              <div className="mb-2 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+              <div className="mb-2 h-2 w-full overflow-hidden rounded-full bg-white/70">
                 <div
                   className={`h-full bg-gradient-to-r ${skill.color} transition-all duration-700`}
                   style={{
@@ -486,7 +472,7 @@ function SkillsSection() {
                 />
               </div>
 
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-slate-600">
                 Working confidence: {skill.level}%
               </p>
 
@@ -512,6 +498,7 @@ type Project = {
   outcome?: string;
   image?: string;
   imageAlt?: string;
+  imagePosition?: string;
   icon: typeof BrainCircuit;
   tags: string[];
   links?: { label: string; href: string; kind: "code" | "demo" | "asset" }[];
@@ -611,6 +598,7 @@ const projects: Project[] = [
     ],
     image: "/Resources/projects/greenhouse-hydro-x.png",
     imageAlt: "Hydro-X greenhouse environmental control system architecture diagrams",
+    imagePosition: "center top",
     icon: Sprout,
     tags: ["Automation", "Sensors", "Control Systems", "Agritech"],
     featured: true,
@@ -703,6 +691,9 @@ const projects: Project[] = [
       "Formulated material blends and evaluated how microcrystalline wax and EVA affect adhesion and debonding.",
       "Compared the engineering trade-off between a useful service bond and heat-enabled separation during recycling.",
     ],
+    image: "/Resources/projects/eic-adhesive.jpg",
+    imageAlt: "Lab samples prepared for the EIC thermally debondable adhesive project",
+    imagePosition: "center 58%",
     icon: FlaskConical,
     tags: ["Materials", "Sustainability", "Testing", "Packaging"],
   },
@@ -806,13 +797,14 @@ function ProjectVisual({ project }: { project: Project }) {
         fill
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-cover transition duration-500 group-hover:scale-105"
+        style={{ objectPosition: project.imagePosition ?? "center" }}
       />
     );
   }
 
   return (
-    <div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
-      <div className="flex h-24 w-24 items-center justify-center rounded-2xl border border-indigo-500/30 bg-indigo-500/10 text-indigo-300">
+    <div className="flex h-full items-center justify-center bg-gradient-to-br from-white/65 via-indigo-50/70 to-cyan-50/70">
+      <div className="flex h-24 w-24 items-center justify-center rounded-2xl border border-indigo-500/30 bg-indigo-500/10 text-indigo-700">
         <Icon size={42} />
       </div>
     </div>
@@ -831,7 +823,7 @@ function ProjectLink({
       href={link.href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:border-indigo-500 hover:bg-slate-800/50"
+      className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/70 bg-white/55 px-4 py-2.5 text-sm font-medium text-slate-950 backdrop-blur-sm transition hover:border-indigo-500 hover:bg-white/65"
     >
       <Icon size={16} />
       {link.label}
@@ -855,17 +847,17 @@ function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative border-t border-slate-800/50 py-24"
+      className="relative border-t border-white/60 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300">
+          <div className="mb-4 inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-700">
             Portfolio
           </div>
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+          <h2 className="mb-4 text-4xl font-bold text-slate-950 md:text-5xl">
             Recent Projects
           </h2>
-          <p className="mx-auto max-w-3xl text-slate-400">
+          <p className="mx-auto max-w-3xl text-slate-600">
             A curated view of recent software, AI, research, robotics and
             innovation work, with each entry focused on what the project does
             and what I contributed.
@@ -880,7 +872,7 @@ function ProjectsSection() {
               className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
                 activeCategory === cat
                   ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg"
-                  : "border border-slate-700 bg-slate-900/50 text-slate-300 hover:border-indigo-500"
+                  : "border border-white/70 bg-white/55 text-slate-700 hover:border-indigo-500"
               }`}
             >
               {cat}
@@ -895,7 +887,7 @@ function ProjectsSection() {
             return (
               <article
                 key={project.title}
-                className={`group relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 transition hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 ${
+                className={`group relative overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br from-white/75 to-white/35 shadow-xl shadow-slate-900/5 backdrop-blur-2xl transition hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 ${
                   project.featured ? "md:col-span-2" : ""
                 }`}
                 style={{ animationDelay: `${idx * 80}ms` }}
@@ -907,14 +899,16 @@ function ProjectsSection() {
                 >
                   <div
                     className={`relative overflow-hidden ${
-                      project.featured ? "min-h-[320px]" : "h-64"
+                      project.featured
+                        ? "aspect-[16/10] min-h-[320px] lg:aspect-auto"
+                        : "aspect-[16/9] min-h-64"
                     }`}
                   >
                     <ProjectVisual project={project} />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
                     {project.featured && (
-                      <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-semibold text-yellow-200 backdrop-blur-sm">
+                      <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-semibold text-yellow-700 backdrop-blur-sm">
                         <Trophy size={14} />
                         Featured
                       </div>
@@ -924,20 +918,20 @@ function ProjectsSection() {
                   <div className="space-y-5 p-6">
                     <div className="space-y-3">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-400">
+                        <span className="rounded-full bg-white/70 px-3 py-1 text-xs text-slate-600">
                           {project.category}
                         </span>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs text-indigo-200">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs text-indigo-700">
                           <Icon size={13} />
                           {project.status}
                         </span>
                       </div>
 
-                      <h3 className="text-2xl font-bold text-white transition group-hover:text-indigo-400">
+                      <h3 className="text-2xl font-bold text-slate-950 transition group-hover:text-indigo-500">
                         {project.title}
                       </h3>
 
-                      <p className="text-sm leading-6 text-slate-300">
+                      <p className="text-sm leading-6 text-slate-700">
                         {project.summary}
                       </p>
                     </div>
@@ -947,7 +941,7 @@ function ProjectsSection() {
                         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
                           Role
                         </p>
-                        <p className="text-sm text-slate-300">{project.role}</p>
+                        <p className="text-sm text-slate-700">{project.role}</p>
                       </div>
                       <div>
                         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
@@ -957,7 +951,7 @@ function ProjectsSection() {
                           {project.technicalFocus.map((focus) => (
                             <span
                               key={focus}
-                              className="rounded-lg bg-slate-800/50 px-2.5 py-1 text-xs text-slate-300"
+                              className="rounded-lg bg-white/65 px-2.5 py-1 text-xs text-slate-700"
                             >
                               {focus}
                             </span>
@@ -974,7 +968,7 @@ function ProjectsSection() {
                         {project.contribution.map((item) => (
                           <li
                             key={item}
-                            className="flex gap-2 text-sm leading-6 text-slate-300"
+                            className="flex gap-2 text-sm leading-6 text-slate-700"
                           >
                             <CheckCircle2
                               className="mt-0.5 shrink-0 text-emerald-400"
@@ -987,7 +981,7 @@ function ProjectsSection() {
                     </div>
 
                     {project.outcome && (
-                      <p className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm leading-6 text-emerald-100">
+                      <p className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm leading-6 text-emerald-800">
                         {project.outcome}
                       </p>
                     )}
@@ -996,7 +990,7 @@ function ProjectsSection() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-lg bg-slate-800/50 px-3 py-1 text-xs text-slate-300"
+                          className="rounded-lg bg-white/65 px-3 py-1 text-xs text-slate-700"
                         >
                           {tag}
                         </span>
@@ -1017,14 +1011,6 @@ function ProjectsSection() {
           })}
         </div>
 
-        <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-sm leading-6 text-slate-400">
-          <p>
-            Verification note: published copy avoids unconfirmed claims about
-            deployments, benchmark gains, production use, certified inspection
-            accuracy, controller reverse-engineering or competition wins beyond
-            those explicitly confirmed.
-          </p>
-        </div>
       </div>
     </section>
   );
@@ -1046,20 +1032,20 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative border-t border-slate-800/50 py-24"
+      className="relative border-t border-white/60 py-24"
     >
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-16 text-center">
-          <div className="mb-4 inline-block rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-300">
+          <div className="mb-4 inline-block rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-700">
             Get In Touch
           </div>
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+          <h2 className="mb-4 text-4xl font-bold text-slate-950 md:text-5xl">
             Let&apos;s Build Something{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
               Useful Together
             </span>
           </h2>
-          <p className="mx-auto max-w-2xl text-slate-400">
+          <p className="mx-auto max-w-2xl text-slate-600">
             Have a project in mind, a research direction to explore or a
             product idea to prototype? I&apos;m open to thoughtful
             collaborations.
@@ -1068,46 +1054,46 @@ function ContactSection() {
 
         <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr]">
           <div className="space-y-6">
-            <div className="group rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 transition hover:border-indigo-500/50">
+            <div className="group rounded-2xl border border-white/60 bg-gradient-to-br from-white/75 to-white/35 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-2xl transition hover:border-indigo-500/50">
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500">
                 <Mail className="text-white" size={24} />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-white">Email</h3>
+              <h3 className="mb-2 text-lg font-semibold text-slate-950">Email</h3>
               <a
                 href="mailto:rsanjay2004@gmail.com"
-                className="text-slate-400 transition hover:text-indigo-400"
+                className="text-slate-600 transition hover:text-indigo-500"
               >
                 rsanjay2004@gmail.com
               </a>
             </div>
 
-            <div className="group rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 transition hover:border-indigo-500/50">
+            <div className="group rounded-2xl border border-white/60 bg-gradient-to-br from-white/75 to-white/35 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-2xl transition hover:border-indigo-500/50">
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500">
                 <Linkedin className="text-white" size={24} />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-white">
+              <h3 className="mb-2 text-lg font-semibold text-slate-950">
                 LinkedIn
               </h3>
               <a
                 href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 transition hover:text-indigo-400"
+                className="text-slate-600 transition hover:text-indigo-500"
               >
                 Connect with me
               </a>
             </div>
 
-            <div className="group rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 transition hover:border-indigo-500/50">
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-slate-700 to-slate-800">
-                <Github className="text-white" size={24} />
+            <div className="group rounded-2xl border border-white/60 bg-gradient-to-br from-white/75 to-white/35 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-2xl transition hover:border-indigo-500/50">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-slate-200 to-slate-300">
+                <Github className="text-slate-950" size={24} />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-white">GitHub</h3>
+              <h3 className="mb-2 text-lg font-semibold text-slate-950">GitHub</h3>
               <a
                 href="https://github.com/rsanjay2004"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 transition hover:text-indigo-400"
+                className="text-slate-600 transition hover:text-indigo-500"
               >
                 Check out my code
               </a>
@@ -1116,12 +1102,12 @@ function ContactSection() {
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-8 shadow-2xl"
+            className="rounded-3xl border border-white/60 bg-gradient-to-br from-white/75 to-white/35 p-8 shadow-2xl shadow-slate-900/10 backdrop-blur-2xl"
           >
             <div className="space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-300">
+                  <label className="mb-2 block text-sm font-medium text-slate-700">
                     Your Name
                   </label>
                   <input
@@ -1131,13 +1117,13 @@ function ContactSection() {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                    className="w-full rounded-xl border border-white/70 bg-white/55 px-4 py-3 text-slate-950 placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                     placeholder="Your name"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-300">
+                  <label className="mb-2 block text-sm font-medium text-slate-700">
                     Email Address
                   </label>
                   <input
@@ -1147,14 +1133,14 @@ function ContactSection() {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                    className="w-full rounded-xl border border-white/70 bg-white/55 px-4 py-3 text-slate-950 placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                     placeholder="you@example.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-300">
+                <label className="mb-2 block text-sm font-medium text-slate-700">
                   Subject
                 </label>
                 <input
@@ -1164,13 +1150,13 @@ function ContactSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, subject: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                  className="w-full rounded-xl border border-white/70 bg-white/55 px-4 py-3 text-slate-950 placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                   placeholder="Project collaboration"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-300">
+                <label className="mb-2 block text-sm font-medium text-slate-700">
                   Message
                 </label>
                 <textarea
@@ -1180,7 +1166,7 @@ function ContactSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="w-full resize-none rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                  className="w-full resize-none rounded-xl border border-white/70 bg-white/55 px-4 py-3 text-slate-950 placeholder-slate-500 backdrop-blur-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -1201,17 +1187,17 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="border-t border-slate-800/50 bg-slate-950">
+    <footer className="border-t border-white/60 bg-white/40 backdrop-blur-xl">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
             <div className="mb-4 flex items-center gap-2">
-              <Terminal className="text-indigo-400" size={28} />
-              <span className="text-2xl font-bold text-white">
+              <Terminal className="text-indigo-500" size={28} />
+              <span className="text-2xl font-bold text-slate-950">
                 Rajkumar Sanjay
               </span>
             </div>
-            <p className="mb-6 text-sm text-slate-400">
+            <p className="mb-6 text-sm text-slate-600">
               Computer Engineering student building thoughtful software,
               AI-assisted systems, robotics and automation prototypes.
             </p>
@@ -1221,7 +1207,7 @@ function Footer() {
                 href="https://github.com/rsanjay2004"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800/50 text-slate-400 transition hover:bg-indigo-500/20 hover:text-indigo-400"
+                className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/65 text-slate-600 transition hover:bg-indigo-500/20 hover:text-indigo-500"
               >
                 <Github size={18} />
               </a>
@@ -1230,14 +1216,14 @@ function Footer() {
                 href="https://www.linkedin.com/in/rajkumar-s-5389a123b"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800/50 text-slate-400 transition hover:bg-indigo-500/20 hover:text-indigo-400"
+                className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/65 text-slate-600 transition hover:bg-indigo-500/20 hover:text-indigo-500"
               >
                 <Linkedin size={18} />
               </a>
               <a
                 aria-label="Email"
                 href="mailto:rsanjay2004@gmail.com"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800/50 text-slate-400 transition hover:bg-indigo-500/20 hover:text-indigo-400"
+                className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/65 text-slate-600 transition hover:bg-indigo-500/20 hover:text-indigo-500"
               >
                 <Mail size={18} />
               </a>
@@ -1245,15 +1231,15 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-950">
               Quick Links
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400">
+            <ul className="space-y-3 text-sm text-slate-600">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="transition hover:text-indigo-400"
+                    className="transition hover:text-indigo-500"
                   >
                     {item.label}
                   </a>
@@ -1263,32 +1249,32 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-950">
               Get In Touch
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400">
+            <ul className="space-y-3 text-sm text-slate-600">
               <li className="flex items-center gap-2">
-                <MapPin size={16} className="text-indigo-400" />
+                <MapPin size={16} className="text-indigo-500" />
                 Singapore
               </li>
               <li className="flex items-center gap-2">
-                <Mail size={16} className="text-indigo-400" />
+                <Mail size={16} className="text-indigo-500" />
                 <a
                   href="mailto:rsanjay2004@gmail.com"
-                  className="transition hover:text-indigo-400"
+                  className="transition hover:text-indigo-500"
                 >
                   rsanjay2004@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <GraduationCap size={16} className="text-indigo-400" />
+                <GraduationCap size={16} className="text-indigo-500" />
                 NUS Computer Engineering
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-slate-800/50 pt-8 text-center text-sm text-slate-500">
+        <div className="mt-12 border-t border-white/60 pt-8 text-center text-sm text-slate-500">
           <p>© {new Date().getFullYear()} Rajkumar Sanjay.</p>
         </div>
       </div>
@@ -1298,7 +1284,7 @@ function Footer() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-cyan-50 text-slate-950">
       <Navbar />
       <Hero />
       <AboutSection />
